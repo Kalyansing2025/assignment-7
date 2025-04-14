@@ -1,0 +1,131 @@
+/* NAVBAR TOP RIGHT SECTION */
+.nav-top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+}
+
+/* MAIN NAVBAR */
+.navbar {
+    background-color: white;
+    border-bottom: 4px solid #8CC63F;
+    padding: 0 20px;
+    height: 60px;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+/* LEFT SECTION OF NAVBAR */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: max-content;
+}
+
+/* KENDO BUTTONS STYLING */
+.k-button {
+    background-color: #002c77;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.k-button:hover {
+    background-color: #0046b3;
+}
+
+.k-button.active {
+    background-color: #8CC63F;
+    color: white;
+}
+
+/* ICON BUTTONS (TOP RIGHT) */
+.icon-btn.k-button {
+    background-color: #002c77;
+    color: white;
+    border-radius: 6px;
+    padding: 8px;
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+}
+
+.icon-btn.k-button:hover {
+    background-color: #0046b3;
+}
+
+/* BADGE (NOTIFICATION COUNTER) */
+.notification-badge {
+    background-color: #8CC63F;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    z-index: 1;
+}
+
+/* ADMIN INFO */
+.user-info {
+    background-color: #002c77;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ICON SIZE */
+.icon-btn i {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    .nav-top-right {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding-bottom: 5px;
+    }
+
+    .user-info {
+        margin-top: 8px;
+    }
+
+    .navbar {
+        height: auto;
+        padding: 10px;
+    }
+
+    .k-button {
+        min-width: max-content;
+    }
+}

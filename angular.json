@@ -12,12 +12,13 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
-          "options": {
+         "options": {
             "outputPath": "dist/assignment-7",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -27,10 +28,15 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "src/styles/lead-management.styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
+
           "configurations": {
             "production": {
               "budgets": [
@@ -75,7 +81,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
@@ -84,13 +91,17 @@
                 "input": "public"
               }
             ],
-            "styles": [
+          "styles": [
+              "src/styles/lead-management.styles.css",
               "src/styles.css"
-            ],
+              ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f3f2490e-889b-474e-8208-7f0eba8361a9"
   }
 }

@@ -1,0 +1,55 @@
+<div class="navbar-container">
+    <!-- Top Right Section -->
+    <div class="nav-top-right">
+        <button kendoButton class="icon-btn">
+            <i class="bi bi-envelope-fill"></i>
+        </button>
+
+        <button kendoButton class="icon-btn">
+            <i class="bi bi-gear-fill"></i>
+        </button>
+
+        <button kendoButton class="icon-btn position-relative">
+            <i class="bi bi-bell-fill"></i>
+            <span class="notification-badge">67</span>
+        </button>
+
+        <button kendoButton class="icon-btn">
+            <i class="bi bi-image-fill"></i>
+        </button>
+
+        <div class="user-info">admin Admin</div>
+    </div>
+
+    <!-- Actual Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button kendoButton [class.active]="isActive('/dashboard')" (click)="navigateTo('/dashboard')">
+                <i class="bi bi-house-door-fill"></i> DASHBOARD
+            </button>
+            <button kendoButton [class.active]="isActive('/agent')" (click)="navigateTo('/agent')">
+                <i class="bi bi-person-fill"></i> AGENT MANAGEMENT
+                <i class="bi bi-caret-down-fill ms-1"></i>
+            </button>
+            <button kendoButton [class.active]="isActive('/calendar')" (click)="navigateTo('/calendar')">
+                <i class="bi bi-calendar-event-fill"></i> CALENDAR
+            </button>
+            <button kendoButton [class.active]="isActive('/ezquote')" (click)="navigateTo('/ezquote')">
+                <i class="bi bi-file-earmark-plus-fill"></i> EZ QUOTE
+            </button>
+            <button kendoButton [class.active]="isActive('/lead')" (click)="navigateTo('/lead')">
+                <i class="bi bi-people-fill"></i> LEAD MANAGEMENT
+            </button>
+            <button kendoButton [class.active]="isActive('/activities')" (click)="navigateTo('/activities')">
+                <i class="bi bi-list-ul"></i> ACTIVITIES
+            </button>
+            <button kendoButton [class.active]="isActive('/workflows')" (click)="navigateTo('/workflows')">
+                <i class="bi bi-arrow-repeat"></i> WORKFLOWS
+            </button>
+            <button kendoButton [class.active]="isActive('/chat')" (click)="navigateTo('/chat')" class="chat-btn">
+                <i class="bi bi-chat-dots-fill"></i> CHAT
+                <span class="notification-badge">1</span>
+            </button>
+        </div>
+    </nav>
+</div>
