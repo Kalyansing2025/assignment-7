@@ -1,4 +1,12 @@
 
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+
+::ng-deep .k-toolbar {
+  display: flex !important;
+}
+
+
 :host {
     display: block;
     margin-top: 116px;
@@ -18,7 +26,7 @@
     font-size: 14px;
   }
  
-  @import "bootstrap-icons/font/bootstrap-icons.css";
+  
 
 /* === Dropdown Fix for Kendo UI === */
 ::ng-deep .dropdown-menu {

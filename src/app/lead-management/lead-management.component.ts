@@ -3,43 +3,45 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GridModule, DataBindingDirective } from '@progress/kendo-angular-grid';
 import { DropDownListModule } from '@progress/kendo-angular-dropdowns';
-import { TextBoxModule } from '@progress/kendo-angular-inputs';
+import { TextBoxModule, RatingModule } from '@progress/kendo-angular-inputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
-import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
-import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
-import { process } from "@progress/kendo-data-query";
-import { SVGIcon, fileExcelIcon, filePdfIcon } from "@progress/kendo-svg-icons";
-import { employees } from "./emp";
-import { images } from "./images";
+
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 
 
+import { SparklineModule, ChartsModule } from '@progress/kendo-angular-charts';
+import { process } from '@progress/kendo-data-query';
+import { SVGIcon, fileExcelIcon, filePdfIcon } from '@progress/kendo-svg-icons';
+
+import { employees } from './emp';
+import { images } from './images';
 
 
 
 import {
-  KENDO_GRID,
-  KENDO_GRID_EXCEL_EXPORT,
-  KENDO_GRID_PDF_EXPORT,
-} from "@progress/kendo-angular-grid";
-
-
+  ExcelModule,
+  PDFModule
+} from '@progress/kendo-angular-grid';
 @Component({
-  selector: "app-lead-management",
-  standalone: true,
+  standalone: true, 
+  selector: "app-lead-management",  
+  templateUrl: './lead-management.component.html',
+  styleUrls: ['./lead-management.component.css'],
   imports: [
     CommonModule,
     FormsModule,
-    GridModule, // ✅ This includes all grid stuff including toolbar buttons
+    GridModule,
     DropDownListModule,
     TextBoxModule,
     ButtonsModule,
-    PDFExportModule,
-    ExcelExportModule
-  ],    
+    ExcelModule,
+    PDFModule
+  ],
   
-  templateUrl: './lead-management.component.html',
-  styleUrls: ['./lead-management.component.css'],
-
+    
+  
+ 
 
 })
 export class LeadManagementComponent implements OnInit {
@@ -58,6 +60,7 @@ export class LeadManagementComponent implements OnInit {
   ngOnInit(): void {
     this.gridView = this.gridData;
   }
+  
 
   public setLeadType(type: 'intl' | 'non-intl'): void {
     this.leadType = type;
@@ -111,7 +114,8 @@ export class LeadManagementComponent implements OnInit {
   }
   // For dropdowns and search
 public leadTypes: string[] = ['Hot', 'Warm', 'Cold'];
-public selectedLeadType: string = 'Hot';
+public selectedLeadType: string = 'All Leads';
+
 
 public preferences: string[] = ['Preference A', 'Preference B'];
 public selectedPreference: string = '';
