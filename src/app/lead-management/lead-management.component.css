@@ -349,3 +349,19 @@ my-app > .k-icon.k-i-loading {
   background-color: #28a745;
   color: white;
 }
+
+
+/* ::ng-deep .lead-grid  {
+  background-color: #ea0808;
+  color: #177de3;
+} */
+
+::ng-deep .k-grid .k-grid-header {
+  background-color: #1c2b5e !important;
+}
+
+::ng-deep .k-grid .k-header {
+  color: #ffffff !important;
+  background-color: rgb(5, 43, 118);
+}
+

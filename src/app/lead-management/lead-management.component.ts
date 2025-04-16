@@ -91,7 +91,7 @@ onfilter(){
 
 
 
-//table
+//table Body
 public gridData: any[] = [
   {
     RecordId: 101,
@@ -121,6 +121,119 @@ public gridData: any[] = [
     SyncToMobile: false,
     EffectiveDate: '2025-04-11',
   },
+  {
+    RecordId: 102,
+    LastName: 'Jon',
+    FirstName: 'Lily',
+    PrimaryEmailAddress: 'jon.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },
+  {
+    RecordId: 102,
+    LastName: 'Roy',
+    FirstName: 'Jane',
+    PrimaryEmailAddress: 'Roy.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },
+  {
+    RecordId: 102,
+    LastName: 'Jani',
+    FirstName: 'Stephin',
+    PrimaryEmailAddress: 'jani.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },
+  {
+    RecordId: 102,
+    LastName: 'Mona',
+    FirstName: 'Sen',
+    PrimaryEmailAddress: 'Mona.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },
+  {
+    RecordId: 102,
+    LastName: 'Jully',
+    FirstName: 'Stev',
+    PrimaryEmailAddress: 'Jully.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },
+  {
+    RecordId: 102,
+    LastName: 'Jony',
+    FirstName: 'Stips',
+    PrimaryEmailAddress: 'jony.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },
+  {
+    RecordId: 102,
+    LastName: 'Alex',
+    FirstName: 'Resty',
+    PrimaryEmailAddress: 'alex.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },
+
+  {
+    RecordId: 102,
+    LastName: 'Lily',
+    FirstName: 'Hexa',
+    PrimaryEmailAddress: 'googly.smith@example.com',
+    PrimaryPhoneType: 'Work',
+    LMPLeadId: 'LMP54321',
+    AppoinmentType: 'Demo',
+    AssignedDate: '2025-04-02',
+    SalesRep: 'Charlie Brown',
+    Coordinator: 'Dana White',
+    SyncToMobile: false,
+    EffectiveDate: '2025-04-11',
+  },  
 ];
 
 
@@ -209,5 +322,18 @@ public gridData: any[] = [
   onActionMenuClick(dataItem: any) {
     console.log('Action menu clicked for', dataItem);
   }
+  
+  toggleDarkMode(event: Event): void {
+    const isDarkMode = (event.target as HTMLInputElement).checked;
+    const body = document.body;
+  
+    if (isDarkMode) {
+      body.classList.add('dark-mode');
+    } else {
+      body.classList.remove('dark-mode');
+    }
+  }
+  
+  
   
 }

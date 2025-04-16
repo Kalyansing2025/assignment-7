@@ -11,6 +11,17 @@
         </label>
         <button kendoButton themeColor="success" icon="file-excel">Export to excel</button>
         <button kendoButton themeColor="success">Create</button>
+        <!-- Dark Mode Toggle -->
+        <!-- Dark Mode Toggle (inside lead-header or wherever you prefer) -->
+        <div class="dark-mode-toggle">
+            <label class="switch">
+                <input type="checkbox" (change)="toggleDarkMode($event)">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Dark Mode</span>
+        </div>
+
+
     </div>
 </div>
 
@@ -69,17 +80,17 @@
 <div class="lead-filters">
     <!-- Left-side group -->
     <div class="lead-filters-left">
-        <!-- ✅ Leads Dropdown -->
+        <!--  Leads Dropdown -->
         <div class="dropdown-group">
             <!-- <kendo-dropdownlist [data]="leadOptions" value="All Leads"></kendo-dropdownlist> -->
         </div>
 
-        <!-- ✅ Saved Preference Dropdown -->
+        <!--  Saved Preference Dropdown -->
         <div class="dropdown-group">
             <!-- <kendo-dropdownlist [data]="searchPreferences" placeholder="Select Saved preference"></kendo-dropdownlist> -->
         </div>
 
-        <!-- 🔍 Search -->
+        <!--  Search -->
         <div class="search-group">
             <kendo-textbox [style.width.px]="165" placeholder="Search in all columns..." [(ngModel)]="searchQuery"
                 (valueChange)="onfilter()"></kendo-textbox>
@@ -95,7 +106,7 @@
 
     <!-- Right-side group: Toggle + Buttons -->
     <div class="lead-filters-right">
-        <!-- 🟢 Toggle Pills -->
+        <!-- Toggle Pills -->
         <div class="custom-pill-toggle">
             <span class="pill-option" [class.active]="leadTypeToggle === 'intl'" (click)="leadTypeToggle = 'intl'">
                 Intl
@@ -136,22 +147,32 @@
         </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="RecordId" editor="numeric" title="Record Id" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="LastName" editor="numeric" title="Last Name" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="FirstName" editor="numeric" title="First Name" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="PrimaryEmailAddress" editor="numeric" title="Primary Email Address"
+    <kendo-grid-column class="lead-grid " field="RecordId" editor="numeric" title="Record Id"
         [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="PrimaryPhoneType" editor="numeric" title="Primary Phone Type"
+    <kendo-grid-column class="lead-grid" field="LastName" editor="text" title="Last Name"
         [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="LMPLeadId" editor="numeric" title="LMP Lead Id" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="AppoinmentType" editor="numeric" title="Appoinment Type"
+    <kendo-grid-column class="lead-grid" field="FirstName" editor="text" title="First Name"
         [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="FirstName" editor="numeric" title="First Name" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="AssignedDate" editor="numeric" title="Assigned Date" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="SalesRep" editor="numeric" title="Sales Rep" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="Coordinator" editor="numeric" title="Coordinator" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="SyncToMobile" editor="numeric" title="Sync To Mobile" [width]="200"></kendo-grid-column>
-    <kendo-grid-column field="EffectiveDate" editor="numeric" title="Effective Date" [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="PrimaryEmailAddress" editor="text" title="Primary Email Address"
+        [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="PrimaryPhoneType" editor="numeric" title="Primary Phone Type"
+        [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="LMPLeadId" editor="numeric" title="LMP Lead Id"
+        [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="AppoinmentType" editor="text" title="Appoinment Type"
+        [width]="200"></kendo-grid-column>
+    <!-- <kendo-grid-column class="lead-grid" field="FirstName" editor="text" title="First Name"
+        [width]="200"></kendo-grid-column> -->
+    <kendo-grid-column class="lead-grid" field="AssignedDate" editor="numeric" title="Assigned Date"
+        [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="SalesRep" editor="text" title="Sales Rep"
+        [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="Coordinator" editor="text" title="Coordinator"
+        [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="SyncToMobile" editor="numeric" title="Sync To Mobile"
+        [width]="200"></kendo-grid-column>
+    <kendo-grid-column class="lead-grid" field="EffectiveDate" editor="numeric" title="Effective Date" [width]="200">
+    </kendo-grid-column>
 
 
     <!-- Don't touch below -->
