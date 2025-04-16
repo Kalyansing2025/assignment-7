@@ -1,6 +1,16 @@
 <div class="navbar-container">
     <!-- Top Right Section -->
     <div class="nav-top-right">
+        <!-- Your original Dark Mode toggle preserved -->
+        <label class="toggle-switch">
+            <input type="checkbox" (change)="toggleDarkMode($event)" />
+            <span class="slider-icon">
+                <span class="icon sun">☀️</span>
+                <span class="icon moon">🌙</span>
+            </span>
+            <span class="label-text">Dark Mode</span>
+        </label>
+
         <button kendoButton class="icon-btn">
             <i class="bi bi-envelope-fill"></i>
         </button>

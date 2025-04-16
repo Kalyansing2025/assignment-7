@@ -25,4 +25,16 @@ export class NavbarComponent {
   isActive(route: string): boolean {
     return this.router.url.startsWith(route);
   }
+
+  toggleDarkMode(event: Event): void {
+    const isDarkMode = (event.target as HTMLInputElement).checked;
+    const body = document.body;
+  
+    if (isDarkMode) {
+      body.classList.add('dark-mode');
+    } else {
+      body.classList.remove('dark-mode');
+    }
+  }
+  
 }
