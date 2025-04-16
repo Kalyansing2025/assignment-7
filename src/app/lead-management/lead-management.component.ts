@@ -18,6 +18,7 @@ import { images } from './images';
 import { products } from '../product';
 import { KENDO_GRIDLAYOUT } from '@progress/kendo-angular-layout';
 import { KENDO_APPBAR } from '@progress/kendo-angular-navigation';
+import { HttpClient } from '@angular/common/http';
 // import { DropDownListModule } from '@progress/kendo-angular-dropdowns';
 
 @Component({
@@ -49,8 +50,17 @@ import { KENDO_APPBAR } from '@progress/kendo-angular-navigation';
     LabelModule
   ],
 })
-export class LeadManagementComponent {
-// toolbar
+export class LeadManagementComponent implements OnInit{
+
+//json
+
+
+
+
+
+
+
+  // toolbar
 
 
 leadOptions = [
@@ -89,190 +99,83 @@ onfilter(){
   
 }
 
+ngOnInit(): void {
+  this.http.get<any[]>('http://localhost:3000/leads').subscribe(data => {
+    this.gridData = data.map(item => ({
+      ...item,
+      RecordId: item.id  // 👈 Map json-server `id` to `RecordId`
+    }));
+  });
+}
 
+public saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
+  const item = formGroup.value;
+
+  if (isNew) {
+    this.http.post('http://localhost:3000/leads', item).subscribe((res: any) => {
+      this.gridData = [...this.gridData, { ...res, RecordId: res.id }];
+      this.closeEditor(sender);
+    });
+  } else {
+    const id = item.RecordId;
+    this.http.put(`http://localhost:3000/leads/${id}`, item).subscribe(() => {
+      this.gridData[rowIndex] = { ...item, RecordId: id };
+      this.gridData = [...this.gridData];
+      this.closeEditor(sender);
+    });
+  }
+}
+
+public removeHandler({ dataItem }: any): void {
+  this.http.delete(`http://localhost:3000/leads/${dataItem.RecordId}`).subscribe(() => {
+    this.gridData = this.gridData.filter(p => p.RecordId !== dataItem.RecordId);
+  });
+}
 
 //table Body
-public gridData: any[] = [
-  {
-    RecordId: 101,
-    LastName: 'Doe',
-    FirstName: 'John',
-    PrimaryEmailAddress: 'john.doe@example.com',
-    PrimaryPhoneType: 'Mobile',
-    LMPLeadId: 'LMP12345',
-    AppoinmentType: 'Consultation',
-    AssignedDate: '2025-04-01',
-    SalesRep: 'Alice Smith',
-    Coordinator: 'Bob Johnson',
-    SyncToMobile: true,
-    EffectiveDate: '2025-04-10',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Smith',
-    FirstName: 'Jane',
-    PrimaryEmailAddress: 'jane.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Jon',
-    FirstName: 'Lily',
-    PrimaryEmailAddress: 'jon.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Roy',
-    FirstName: 'Jane',
-    PrimaryEmailAddress: 'Roy.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Jani',
-    FirstName: 'Stephin',
-    PrimaryEmailAddress: 'jani.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Mona',
-    FirstName: 'Sen',
-    PrimaryEmailAddress: 'Mona.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Jully',
-    FirstName: 'Stev',
-    PrimaryEmailAddress: 'Jully.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Jony',
-    FirstName: 'Stips',
-    PrimaryEmailAddress: 'jony.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-  {
-    RecordId: 102,
-    LastName: 'Alex',
-    FirstName: 'Resty',
-    PrimaryEmailAddress: 'alex.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },
-
-  {
-    RecordId: 102,
-    LastName: 'Lily',
-    FirstName: 'Hexa',
-    PrimaryEmailAddress: 'googly.smith@example.com',
-    PrimaryPhoneType: 'Work',
-    LMPLeadId: 'LMP54321',
-    AppoinmentType: 'Demo',
-    AssignedDate: '2025-04-02',
-    SalesRep: 'Charlie Brown',
-    Coordinator: 'Dana White',
-    SyncToMobile: false,
-    EffectiveDate: '2025-04-11',
-  },  
-];
+public gridData: any[] = [];
 
 
   public formGroup!: FormGroup;
   private editedRowIndex: number | null = null;
   private nextProductID = 3;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   public createFormGroup = (args: { dataItem: any; isNew: boolean }): FormGroup => {
-
     const item = args.isNew
       ? {
-          ProductID: this.nextProductID,
-          ProductName: '',
-          UnitPrice: 0,
-          UnitsInStock: 0,
-          Discontinued: false,
+          RecordId: null,
+          LastName: '',
+          FirstName: '',
+          PrimaryEmailAddress: '',
+          PrimaryPhoneType: '',
+          LMPLeadId: '',
+          AppoinmentType: '',
+          AssignedDate: '',
+          SalesRep: '',
+          Coordinator: '',
+          SyncToMobile: false,
+          EffectiveDate: '',
         }
       : args.dataItem;
-
+  
     return this.fb.group({
       RecordId: new FormControl(item.RecordId),
-    LastName: new FormControl(item.LastName, Validators.required),
-    FirstName: new FormControl(item.FirstName, Validators.required),
-    PrimaryEmailAddress: new FormControl(item.PrimaryEmailAddress, [
-      Validators.required,
-      Validators.email
-    ]),
-    PrimaryPhoneType: new FormControl(item.PrimaryPhoneType),
-    LMPLeadId: new FormControl(item.LMPLeadId),
-    AppoinmentType: new FormControl(item.AppoinmentType),
-    AssignedDate: new FormControl(item.AssignedDate),
-    SalesRep: new FormControl(item.SalesRep, Validators.required),
-    Coordinator: new FormControl(item.Coordinator),
-    SyncToMobile: new FormControl(item.SyncToMobile),
-    EffectiveDate: new FormControl(item.EffectiveDate)
+      LastName: new FormControl(item.LastName, Validators.required),
+      FirstName: new FormControl(item.FirstName, Validators.required),
+      PrimaryEmailAddress: new FormControl(item.PrimaryEmailAddress, [Validators.required, Validators.email]),
+      PrimaryPhoneType: new FormControl(item.PrimaryPhoneType),
+      LMPLeadId: new FormControl(item.LMPLeadId),
+      AppoinmentType: new FormControl(item.AppoinmentType),
+      AssignedDate: new FormControl(item.AssignedDate),
+      SalesRep: new FormControl(item.SalesRep, Validators.required),
+      Coordinator: new FormControl(item.Coordinator),
+      SyncToMobile: new FormControl(item.SyncToMobile),
+      EffectiveDate: new FormControl(item.EffectiveDate),
     });
   };
+  
 
   public addHandler({ sender }: any): void {
     this.closeEditor(sender);
@@ -291,25 +194,25 @@ public gridData: any[] = [
     this.closeEditor(sender, rowIndex);
   }
 
-  public saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
-    const product = formGroup.value;
+  // public saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
+  //   const product = formGroup.value;
 
-    if (isNew) {
-      this.gridData = [
-        ...this.gridData,
-        { ...product, ProductID: this.nextProductID++ },
-      ];
-    } else {
-      this.gridData[rowIndex] = product;
-      this.gridData = [...this.gridData]; // Force refresh
-    }
+  //   if (isNew) {
+  //     this.gridData = [
+  //       ...this.gridData,
+  //       { ...product, ProductID: this.nextProductID++ },
+  //     ];
+  //   } else {
+  //     this.gridData[rowIndex] = product;
+  //     this.gridData = [...this.gridData]; // Force refresh
+  //   }
 
-    this.closeEditor(sender);
-  }
+  //   this.closeEditor(sender);
+  // }
 
-  public removeHandler({ dataItem }: any): void {
-    this.gridData = this.gridData.filter(p => p.ProductID !== dataItem.ProductID);
-  }
+  // public removeHandler({ dataItem }: any): void {
+  //   this.gridData = this.gridData.filter(p => p.ProductID !== dataItem.ProductID);
+  // }
 
   private closeEditor(grid: any, rowIndex: number = this.editedRowIndex!): void {
     grid.closeRow(rowIndex);
