@@ -365,3 +365,159 @@ my-app > .k-icon.k-i-loading {
   background-color: rgb(5, 43, 118);
 }
 
+.toolbar {
+  margin-bottom: 20px;
+}
+
+.filters {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filters label {
+  margin-right: 5px;
+}
+
+.fancy-toolbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.fancy-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  margin-bottom: 1.5rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #374151;
+}
+
+input[type="text"],
+select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn.primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: #2563eb;
+}
+
+.btn.accent {
+  background-color: #10b981;
+  color: white;
+}
+
+.btn.accent:hover {
+  background-color: #059669;
+}
+
+.btn.warn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn.warn:hover {
+  background-color: #dc2626;
+}
+
+.btn.filter {
+  background-color: #6366f1;
+  color: white;
+}
+
+.btn.filter:hover {
+  background-color: #4f46e5;
+}
+
+/* Toggle switch styling */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.toggle-switch input[type='checkbox'] {
+  display: none;
+}
+
+.slider {
+  width: 40px;
+  height: 20px;
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+input[type='checkbox']:checked + .slider {
+  background-color: #3b82f6;
+}
+
+input[type='checkbox']:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+.label-text {
+  font-size: 0.9rem;
+  color: #374151;
+}

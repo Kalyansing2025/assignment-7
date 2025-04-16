@@ -1,132 +1,40 @@
-<!-- Header Section -->
-<div class="lead-header d-flex justify-content-between align-items-center mb-3">
-    <div>
-        <h4 class="text-success m-0 fw-bold">Lead Management</h4>
-        <small class="text-muted">Leads</small>
-    </div>
-    <div class="d-flex align-items-center gap-2">
-        <label class="d-flex align-items-center gap-1 mb-0">
-            <input type="checkbox" class="form-check-input" />
-            <span>Board View</span>
-        </label>
-        <button kendoButton themeColor="success" icon="file-excel">Export to excel</button>
-        <button kendoButton themeColor="success">Create</button>
-        <!-- Dark Mode Toggle -->
-        <!-- Dark Mode Toggle (inside lead-header or wherever you prefer) -->
-        <div class="dark-mode-toggle">
-            <label class="switch">
-                <input type="checkbox" (change)="toggleDarkMode($event)">
-                <span class="slider round"></span>
-            </label>
-            <span class="toggle-label">Dark Mode</span>
-        </div>
-
-
-    </div>
+<div class="toolbar fancy-toolbar">
+    <button class="btn primary" (click)="bulkEdit()">Bulk Edit</button>
+    <button class="btn accent" (click)="savePreferences()">Save Preferences</button>
+    <button class="btn warn" (click)="clearFilters()">Clear Filters</button>
+    <label class="toggle-switch">
+        <input type="checkbox" (change)="toggleDarkMode($event)" />
+        <span class="slider"></span>
+        <span class="label-text">Dark Mode</span>
+    </label>
 </div>
 
-<!-- Main Grid -->
-
-<!-- Toolbar -->
-<!-- <ng-template kendoGridToolbarTemplate>
-        <h3 style="color: red;">Toolbar is working!</h3>
-    </ng-template> -->
-
-<!-- <ng-template kendoGridToolbarTemplate>
-
-        <h3>TEST TOOLBAR</h3>
-    </ng-template> -->
-
-<!-- <ng-template kendoGridToolbarTemplate>
-    <div class="top-bar-wrapper">
-        <kendo-dropdownlist [data]="leadTypes" [(ngModel)]="selectedLeadType" name="leadType" class="custom-select">
-        </kendo-dropdownlist>
+<div class="filters fancy-filters">
+    <div class="filter-group">
+        <label for="leadType">Lead Type</label>
+        <select id="leadType" [(ngModel)]="selectedLead">
+            <option *ngFor="let option of leadOptions" [value]="option.value">
+                {{ option.text }}
+            </option>
+        </select>
     </div>
-</ng-template> -->
 
+    <div class="filter-group">
+        <label for="searchPreference">Search Preference</label>
+        <select id="searchPreference" [(ngModel)]="selectedPreference">
+            <option *ngFor="let preference of searchPreferences" [value]="preference.value">
+                {{ preference.text }}
+            </option>
+        </select>
+    </div>
 
+    <div class="filter-group">
+        <label for="search">Search</label>
+        <input type="text" id="search" [(ngModel)]="searchQuery" placeholder="Search..." (keyup)="onfilter()" />
+    </div>
 
-
-
-
-<!-- ✅ Directly place the dropdown here, not inside another ng-template -->
-<!-- <kendo-dropdownlist *ngIf="leadTypes.length" [data]="leadTypes" [(ngModel)]="selectedLeadType" name="leadType"
-    class="custom-select" [defaultItem]="'All Leads'">
-</kendo-dropdownlist>
-
-<kendo-textbox [(ngModel)]="searchKeyword" class="search-input" placeholder="Type Search Keyword">
-</kendo-textbox>
-
-<button kendoButton class="btn-search" icon="search" (click)="onSearch()"></button>
-
-<div class="toggle-group">
-    <button class="toggle-btn" [class.active]="intlFilter === 'Non-Intl'" (click)="intlFilter = 'Non-Intl'">
-        Non-Intl.
-    </button>
-    <button class="toggle-btn" [class.active]="intlFilter === 'Intl'" (click)="intlFilter = 'Intl'">
-        Intl.
-    </button>
+    <button class="btn filter" (click)="onfilter()">Filter</button>
 </div>
-
-<div class="buttons-wrapper">
-    <button class="btn-action" (click)="onClearFilters()">Clear Filters</button>
-    <button class="btn-action">Bulk Edit</button>
-    <button class="btn-action">Save Preferences</button>
-    <button kendoButton icon="more-vertical" class="btn-action-1"></button>
-</div> -->
-
-<!-- OM -->
-
-<div class="lead-filters">
-    <!-- Left-side group -->
-    <div class="lead-filters-left">
-        <!--  Leads Dropdown -->
-        <div class="dropdown-group">
-            <!-- <kendo-dropdownlist [data]="leadOptions" value="All Leads"></kendo-dropdownlist> -->
-        </div>
-
-        <!--  Saved Preference Dropdown -->
-        <div class="dropdown-group">
-            <!-- <kendo-dropdownlist [data]="searchPreferences" placeholder="Select Saved preference"></kendo-dropdownlist> -->
-        </div>
-
-        <!--  Search -->
-        <div class="search-group">
-            <kendo-textbox [style.width.px]="165" placeholder="Search in all columns..." [(ngModel)]="searchQuery"
-                (valueChange)="onfilter()"></kendo-textbox>
-        </div>
-
-        <!-- Search Button Icon -->
-        <div class="searchbtn">
-            <button class="search-btn">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Right-side group: Toggle + Buttons -->
-    <div class="lead-filters-right">
-        <!-- Toggle Pills -->
-        <div class="custom-pill-toggle">
-            <span class="pill-option" [class.active]="leadTypeToggle === 'intl'" (click)="leadTypeToggle = 'intl'">
-                Intl
-            </span>
-            <span class="pill-option" [class.active]="leadTypeToggle === 'non-intl'"
-                (click)="leadTypeToggle = 'non-intl'">
-                Non-Intl
-            </span>
-        </div>
-
-        <!-- Action Buttons -->
-        <button class="create-btn-div" (click)="clearFilters()">Clear Filters</button>
-        <button class="create-btn-div" (click)="bulkEdit()">Bulk Edit</button>
-        <button class="create-btn-div" (click)="savePreferences()">Save Preference</button>
-    </div>
-</div>
-
-
-
-
 
 <kendo-grid [kendoGridBinding]="gridData" [pageSize]="10" [pageable]="true" [sortable]="true" [navigable]="true"
     (add)="addHandler($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
@@ -137,56 +45,27 @@
         <button kendoGridAddCommand>Add new</button>
     </ng-template>
 
+    <kendo-grid-column field="RecordId" title="Record Id" [width]="200" editor="numeric"></kendo-grid-column>
+    <kendo-grid-column field="LastName" title="Last Name" [width]="200" editor="text"></kendo-grid-column>
+    <kendo-grid-column field="FirstName" title="First Name" [width]="200" editor="text"></kendo-grid-column>
+    <kendo-grid-column field="PrimaryEmailAddress" title="Primary Email Address" [width]="200"
+        editor="text"></kendo-grid-column>
+    <kendo-grid-column field="PrimaryPhoneType" title="Primary Phone Type" [width]="200"
+        editor="numeric"></kendo-grid-column>
+    <kendo-grid-column field="LMPLeadId" title="LMP Lead Id" [width]="200" editor="numeric"></kendo-grid-column>
+    <kendo-grid-column field="AppoinmentType" title="Appoinment Type" [width]="200" editor="text"></kendo-grid-column>
+    <kendo-grid-column field="AssignedDate" title="Assigned Date" [width]="200" editor="text"></kendo-grid-column>
+    <kendo-grid-column field="SalesRep" title="Sales Rep" [width]="200" editor="text"></kendo-grid-column>
+    <kendo-grid-column field="Coordinator" title="Coordinator" [width]="200" editor="text"></kendo-grid-column>
+    <kendo-grid-column field="SyncToMobile" title="Sync To Mobile" [width]="200" editor="numeric"></kendo-grid-column>
+    <kendo-grid-column field="EffectiveDate" title="Effective Date" [width]="200" editor="text"></kendo-grid-column>
 
-    <kendo-grid-column title="Actions" [width]="200">
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <kendo-dropdownlist [data]="['Follow Up', 'Mark as Done', 'Escalate']" [defaultItem]="'Select Action'"
-                (valueChange)="onActionSelect($event, dataItem)">
-            </kendo-dropdownlist>
-            <button kendoButton icon="more-vertical" (click)="onActionMenuClick(dataItem)"></button>
-        </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column class="lead-grid " field="RecordId" editor="numeric" title="Record Id"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="LastName" editor="text" title="Last Name"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="FirstName" editor="text" title="First Name"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="PrimaryEmailAddress" editor="text" title="Primary Email Address"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="PrimaryPhoneType" editor="numeric" title="Primary Phone Type"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="LMPLeadId" editor="numeric" title="LMP Lead Id"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="AppoinmentType" editor="text" title="Appoinment Type"
-        [width]="200"></kendo-grid-column>
-    <!-- <kendo-grid-column class="lead-grid" field="FirstName" editor="text" title="First Name"
-        [width]="200"></kendo-grid-column> -->
-    <kendo-grid-column class="lead-grid" field="AssignedDate" editor="numeric" title="Assigned Date"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="SalesRep" editor="text" title="Sales Rep"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="Coordinator" editor="text" title="Coordinator"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="SyncToMobile" editor="numeric" title="Sync To Mobile"
-        [width]="200"></kendo-grid-column>
-    <kendo-grid-column class="lead-grid" field="EffectiveDate" editor="numeric" title="Effective Date" [width]="200">
-    </kendo-grid-column>
-
-
-    <!-- Don't touch below -->
-    <kendo-grid-command-column [width]="250" [sticky]="true">
+    <kendo-grid-command-column [width]="160" [locked]="true">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
             <button kendoGridEditCommand [primary]="true">Edit</button>
             <button kendoGridRemoveCommand>Remove</button>
-            <button kendoGridSaveCommand>
-
-                {{ isNew ? "Add" : "Update" }}
-            </button>
-            <button kendoGridCancelCommand>
-                {{ isNew ? "Discard" : "Cancel" }}
-            </button>
+            <button kendoGridSaveCommand>{{ isNew ? "Add" : "Update" }}</button>
+            <button kendoGridCancelCommand>{{ isNew ? "Discard" : "Cancel" }}</button>
         </ng-template>
     </kendo-grid-command-column>
 </kendo-grid>

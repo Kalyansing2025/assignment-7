@@ -94,34 +94,45 @@ savePreferences() {
 
 
 
-onfilter(){
-  console.log("Filter works");
-  
-}
+
+originalGridData: any[] = []; // Store unfiltered data
 
 ngOnInit(): void {
   this.http.get<any[]>('http://localhost:3000/leads').subscribe(data => {
     this.gridData = data.map(item => ({
       ...item,
-      RecordId: item.id  // 👈 Map json-server `id` to `RecordId`
+      RecordId: item.id
     }));
+    this.originalGridData = [...this.gridData]; // backup full dataset
   });
 }
 
+onfilter(): void {
+  const query = this.searchQuery.toLowerCase();
+  this.gridData = this.originalGridData.filter(item =>
+    Object.values(item).some(value =>
+      value?.toString().toLowerCase().includes(query)
+    )
+  );
+}                                                                                          
+                                                    
+
 public saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
-  const item = formGroup.value;
+  const item = formGroup.value; // Get the updated data from the form group
 
   if (isNew) {
+    // Handle adding a new item
     this.http.post('http://localhost:3000/leads', item).subscribe((res: any) => {
-      this.gridData = [...this.gridData, { ...res, RecordId: res.id }];
-      this.closeEditor(sender);
+      this.gridData = [...this.gridData, { ...res, RecordId: res.id }]; // Add the new item to the grid data
+      this.closeEditor(sender); // Close the editor
     });
   } else {
-    const id = item.RecordId;
+    // Handle updating an existing item
+    const id = item.RecordId; // Get the ID of the item being updated
     this.http.put(`http://localhost:3000/leads/${id}`, item).subscribe(() => {
-      this.gridData[rowIndex] = { ...item, RecordId: id };
-      this.gridData = [...this.gridData];
-      this.closeEditor(sender);
+      this.gridData[rowIndex] = { ...item, RecordId: id }; // Update the item in the grid data
+      this.gridData = [...this.gridData]; // Refresh the grid data
+      this.closeEditor(sender); // Close the editor
     });
   }
 }
@@ -184,35 +195,15 @@ public gridData: any[] = [];
   }
 
   public editHandler({ sender, rowIndex, dataItem }: any): void {
-    this.closeEditor(sender);
-    this.formGroup = this.createFormGroup({ dataItem, isNew: false });
-    this.editedRowIndex = rowIndex;
-    sender.editRow(rowIndex, this.formGroup);
+    this.closeEditor(sender); // Close any previously opened editor
+    this.formGroup = this.createFormGroup({ dataItem, isNew: false }); // Create form group for editing
+    this.editedRowIndex = rowIndex; // Track the row being edited
+    sender.editRow(rowIndex, this.formGroup); // Open the editor for the selected row
   }
 
   public cancelHandler({ sender, rowIndex }: any): void {
     this.closeEditor(sender, rowIndex);
   }
-
-  // public saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
-  //   const product = formGroup.value;
-
-  //   if (isNew) {
-  //     this.gridData = [
-  //       ...this.gridData,
-  //       { ...product, ProductID: this.nextProductID++ },
-  //     ];
-  //   } else {
-  //     this.gridData[rowIndex] = product;
-  //     this.gridData = [...this.gridData]; // Force refresh
-  //   }
-
-  //   this.closeEditor(sender);
-  // }
-
-  // public removeHandler({ dataItem }: any): void {
-  //   this.gridData = this.gridData.filter(p => p.ProductID !== dataItem.ProductID);
-  // }
 
   private closeEditor(grid: any, rowIndex: number = this.editedRowIndex!): void {
     grid.closeRow(rowIndex);
