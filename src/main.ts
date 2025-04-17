@@ -11,4 +11,4 @@ bootstrapApplication(AppComponent, {
     ...(appConfig.providers || []),
     provideAnimations()
   ]
-}).catch((err) => console.error(err));
+}).catch((err) => console.error(err));                                                    
