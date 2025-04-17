@@ -1,3 +1,7 @@
+.main-content {
+  padding-top: 116px; /* 56px + 60px */
+}
+
 /* NAVBAR TOP RIGHT SECTION */
 .nav-top-right {
     display: flex;
@@ -10,34 +14,44 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1001;
+    height: 56px; /* explicit height */
+    z-index: 1002;
 }
 
 /* MAIN NAVBAR */
 .navbar {
-    background-color: white;
-    border-bottom: 4px solid #8CC63F;
-    padding: 0 20px;
-    height: 60px;
-    position: fixed;
-    top: 56px;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
+  background-color: white;
+  border-bottom: 4px solid #8CC63F;
+  padding: 0 20px;
+  height: 60px;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow-x: auto; /* Already present */
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: thin; /* Firefox */
+}
+/* Scrollbar styling for WebKit (Chrome, Safari) */
+.navbar::-webkit-scrollbar {
+  height: 6px;
+}
+.navbar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
 }
 
 /* LEFT SECTION OF NAVBAR */
 .nav-left {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    min-width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: max-content;
+  white-space: nowrap;
 }
-
 /* KENDO BUTTONS STYLING */
 .k-button {
     background-color: #002c77;
@@ -133,6 +147,7 @@
     justify-content: space-between;
     padding: 0 6px;
     box-sizing: border-box;
+    z-index: 1002; 
   }
   
   .slider-icon .icon {
@@ -168,22 +183,57 @@
 
 /* RESPONSIVE STYLES */
 @media (max-width: 768px) {
-    .nav-top-right {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        padding-bottom: 5px;
-    }
+  .navbar {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-    .user-info {
-        margin-top: 8px;
-    }
+  .nav-left {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    min-width: max-content;
+  }
+}
 
-    .navbar {
-        height: auto;
-        padding: 10px;
-    }
+/* Responsive For Mobaile Viwe Dark Mode Toggle */
+@media (max-width: 768px) {
+  .toggle-switch {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 6px;
+    font-size: 13px;
+  }
 
-    .k-button {
-        min-width: max-content;
-    }
+  .slider-icon {
+    width: 40px;
+    height: 20px;
+    padding: 0 5px;
+  }
+
+  .slider-icon .icon {
+    font-size: 12px;
+  }
+
+  .label-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toggle-switch {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .slider-icon {
+    width: 36px;
+    height: 18px;
+    padding: 0 4px;
+  }
+
+  .label-text {
+    font-size: 12px;
+  }
 }

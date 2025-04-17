@@ -1,29 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-
-import { GridModule, DataBindingDirective, ExcelModule, PDFModule, CreateFormGroup, CreateFormGroupArgs, KENDO_GRID } from '@progress/kendo-angular-grid';
-import { DropDownListModule, KENDO_DROPDOWNLIST } from '@progress/kendo-angular-dropdowns';
-import { TextBoxModule, RatingModule, InputsModule } from '@progress/kendo-angular-inputs';
-import { ButtonsModule, KENDO_BUTTONGROUP, KENDO_DROPDOWNBUTTON } from '@progress/kendo-angular-buttons';
-import { KENDO_TOOLBAR, ToolBarModule } from '@progress/kendo-angular-toolbar';
-
-
-import { SparklineModule, ChartsModule } from '@progress/kendo-angular-charts';
-import { process } from '@progress/kendo-data-query';
-import { SVGIcon, fileExcelIcon, filePdfIcon } from '@progress/kendo-svg-icons';
-import { KENDO_LABEL, LabelModule } from '@progress/kendo-angular-label';
-import { employees } from './emp';
-import { images } from './images';
-import { products } from '../product';
-import { KENDO_GRIDLAYOUT } from '@progress/kendo-angular-layout';
-import { KENDO_APPBAR } from '@progress/kendo-angular-navigation';
 import { HttpClient } from '@angular/common/http';
-// import { DropDownListModule } from '@progress/kendo-angular-dropdowns';
+
+import {
+  GridComponent,
+  GridModule,
+  ExcelModule,
+  PDFModule,
+  CreateFormGroupArgs
+} from '@progress/kendo-angular-grid';
+import { DropDownListModule } from '@progress/kendo-angular-dropdowns';
+import { TextBoxModule, RatingModule, InputsModule } from '@progress/kendo-angular-inputs';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { ToolBarModule } from '@progress/kendo-angular-toolbar';
+import { SparklineModule, ChartsModule } from '@progress/kendo-angular-charts';
+import { KENDO_LABEL, LabelModule } from '@progress/kendo-angular-label';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 
 @Component({
-  standalone: true, 
-  selector: "app-lead-management",  
+  standalone: true,
+  selector: "app-lead-management",
   templateUrl: './lead-management.component.html',
   styleUrls: ['./lead-management.component.css'],
   imports: [
@@ -39,121 +36,48 @@ import { HttpClient } from '@angular/common/http';
     PDFModule,
     TextBoxModule,
     RatingModule,
-    KENDO_DROPDOWNBUTTON,
-    KENDO_DROPDOWNLIST,
-    KENDO_BUTTONGROUP,
-    KENDO_GRID,
-    KENDO_GRIDLAYOUT,
-    KENDO_TOOLBAR,
-    KENDO_APPBAR,
-    KENDO_LABEL,
-    LabelModule
+    LabelModule,
+    ExcelExportModule
   ],
 })
-export class LeadManagementComponent implements OnInit{
+export class LeadManagementComponent implements OnInit {
+  @ViewChild('grid') grid!: GridComponent;
 
-//json
+  gridData: any[] = [];
+  originalGridData: any[] = [];
 
+  formGroup!: FormGroup;
+  editedRowIndex: number | null = null;
 
+  // Toolbar controls
+  leadOptions = [
+    { text: 'Intl Leads', value: 'intl' },
+    { text: 'Non-Intl Leads', value: 'non-intl' }
+  ];
 
+  searchPreferences = [
+    { text: 'My Saved Filter 1', value: 'filter1' },
+    { text: 'My Saved Filter 2', value: 'filter2' }
+  ];
 
-
-
-
-  // toolbar
-
-
-leadOptions = [
-  { text: 'Intl Leads', value: 'intl' },
-  { text: 'Non-Intl Leads', value: 'non-intl' }
-];
-
-searchPreferences = [
-  { text: 'My Saved Filter 1', value: 'filter1' },
-  { text: 'My Saved Filter 2', value: 'filter2' }
-];
-
-selectedLead: string | null = null;
-selectedPreference: string | null = null;
-searchQuery = '';
-leadTypeToggle = 'intl'; // default selected toggle
-
-clearFilters() {
-  this.selectedLead = null;
-  this.selectedPreference = null;
-  this.searchQuery = '';
-}
-
-bulkEdit() {
-  console.log('Bulk edit clicked');
-}
-
-savePreferences() {
-  console.log('Save preferences clicked');
-}
-
-
-
-
-originalGridData: any[] = []; // Store unfiltered data
-
-ngOnInit(): void {
-  this.http.get<any[]>('http://localhost:3000/leads').subscribe(data => {
-    this.gridData = data.map(item => ({
-      ...item,
-      RecordId: item.id
-    }));
-    this.originalGridData = [...this.gridData]; // backup full dataset
-  });
-}
-
-onfilter(): void {
-  const query = this.searchQuery.toLowerCase();
-  this.gridData = this.originalGridData.filter(item =>
-    Object.values(item).some(value =>
-      value?.toString().toLowerCase().includes(query)
-    )
-  );
-}                                                                                          
-                                                    
-
-public saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
-  const item = formGroup.value; // Get the updated data from the form group
-
-  if (isNew) {
-    // Handle adding a new item
-    this.http.post('http://localhost:3000/leads', item).subscribe((res: any) => {
-      this.gridData = [...this.gridData, { ...res, RecordId: res.id }]; // Add the new item to the grid data
-      this.closeEditor(sender); // Close the editor
-    });
-  } else {
-    // Handle updating an existing item
-    const id = item.RecordId; // Get the ID of the item being updated
-    this.http.put(`http://localhost:3000/leads/${id}`, item).subscribe(() => {
-      this.gridData[rowIndex] = { ...item, RecordId: id }; // Update the item in the grid data
-      this.gridData = [...this.gridData]; // Refresh the grid data
-      this.closeEditor(sender); // Close the editor
-    });
-  }
-}
-
-public removeHandler({ dataItem }: any): void {
-  this.http.delete(`http://localhost:3000/leads/${dataItem.RecordId}`).subscribe(() => {
-    this.gridData = this.gridData.filter(p => p.RecordId !== dataItem.RecordId);
-  });
-}
-
-//table Body
-public gridData: any[] = [];
-
-
-  public formGroup!: FormGroup;
-  private editedRowIndex: number | null = null;
-  private nextProductID = 3;
+  selectedLead: string | null = null;
+  selectedPreference: string | null = null;
+  searchQuery = '';
+  leadTypeToggle = 'intl';
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
-  public createFormGroup = (args: { dataItem: any; isNew: boolean }): FormGroup => {
+  ngOnInit(): void {
+    this.http.get<any[]>('http://localhost:3000/leads').subscribe(data => {
+      this.gridData = data.map(item => ({
+        ...item,
+        RecordId: item.id
+      }));
+      this.originalGridData = [...this.gridData];
+    });
+  }
+
+  createFormGroup = (args: { dataItem: any; isNew: boolean }): FormGroup => {
     const item = args.isNew
       ? {
           RecordId: null,
@@ -170,7 +94,7 @@ public gridData: any[] = [];
           EffectiveDate: '',
         }
       : args.dataItem;
-  
+
     return this.fb.group({
       RecordId: new FormControl(item.RecordId),
       LastName: new FormControl(item.LastName, Validators.required),
@@ -186,48 +110,117 @@ public gridData: any[] = [];
       EffectiveDate: new FormControl(item.EffectiveDate),
     });
   };
-  
 
-  public addHandler({ sender }: any): void {
+  addHandler({ sender }: any): void {
     this.closeEditor(sender);
     this.formGroup = this.createFormGroup({ dataItem: {}, isNew: true });
     sender.addRow(this.formGroup);
   }
 
-  public editHandler({ sender, rowIndex, dataItem }: any): void {
-    this.closeEditor(sender); // Close any previously opened editor
-    this.formGroup = this.createFormGroup({ dataItem, isNew: false }); // Create form group for editing
-    this.editedRowIndex = rowIndex; // Track the row being edited
-    sender.editRow(rowIndex, this.formGroup); // Open the editor for the selected row
+  editHandler({ sender, rowIndex, dataItem }: any): void {
+    this.closeEditor(sender);
+    this.formGroup = this.createFormGroup({ dataItem, isNew: false });
+    this.editedRowIndex = rowIndex;
+    sender.editRow(rowIndex, this.formGroup);
   }
 
-  public cancelHandler({ sender, rowIndex }: any): void {
+  cancelHandler({ sender, rowIndex }: any): void {
     this.closeEditor(sender, rowIndex);
+  }
+
+  saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
+    const item = formGroup.value;
+
+    if (isNew) {
+      this.http.post('http://localhost:3000/leads', item).subscribe((res: any) => {
+        this.gridData = [...this.gridData, { ...res, RecordId: res.id }];
+        this.closeEditor(sender);
+      });
+    } else {
+      const id = item.RecordId;
+      this.http.put(`http://localhost:3000/leads/${id}`, item).subscribe(() => {
+        this.gridData[rowIndex] = { ...item, RecordId: id };
+        this.gridData = [...this.gridData];
+        this.closeEditor(sender);
+      });
+    }
+  }
+
+  exportToExcel(): void {
+    if (this.grid) {
+      this.grid.saveAsExcel(); // ✅ No arguments needed
+    }
+  }
+  onExcelExport(e: any): void {
+  e.workbook.fileName = 'Leads.xlsx';
+  // You can manipulate the workbook here if needed
+}
+
+  
+  
+  
+
+  removeHandler({ dataItem }: any): void {
+    this.http.delete(`http://localhost:3000/leads/${dataItem.RecordId}`).subscribe(() => {
+      this.gridData = this.gridData.filter(p => p.RecordId !== dataItem.RecordId);
+    });
+  }
+
+  clearFilters(): void {
+    this.selectedLead = null;
+    this.selectedPreference = null;
+    this.searchQuery = '';
+  }
+
+  bulkEdit(): void {
+    console.log('Bulk edit clicked');
+  }
+
+  savePreferences(): void {
+    console.log('Save preferences clicked');
+  }
+
+  onfilter(): void {
+    const query = this.searchQuery.toLowerCase();
+    this.gridData = this.originalGridData.filter(item =>
+      Object.values(item).some(value =>
+        value?.toString().toLowerCase().includes(query)
+      )
+    );
+  }
+
+  toggleDarkMode(event: Event): void {
+    const isDarkMode = (event.target as HTMLInputElement).checked;
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }
+
+  addNewRowFromToolbar(): void {
+    const newItem = {
+      RecordId: null,
+      LastName: '',
+      FirstName: '',
+      PrimaryEmailAddress: '',
+      PrimaryPhoneType: '',
+      LMPLeadId: '',
+      AppoinmentType: '',
+      AssignedDate: '',
+      SalesRep: '',
+      Coordinator: '',
+      SyncToMobile: false,
+      EffectiveDate: '',
+    };
+
+    this.formGroup = this.createFormGroup({ dataItem: newItem, isNew: true });
+
+    if (this.grid) {
+      this.grid.addRow(this.formGroup);
+    } else {
+      console.warn("Grid is not ready yet.");
+    }
   }
 
   private closeEditor(grid: any, rowIndex: number = this.editedRowIndex!): void {
     grid.closeRow(rowIndex);
     this.editedRowIndex = null;
   }
-  onActionSelect(action: string, dataItem: any) {
-    console.log(`Action '${action}' selected for`, dataItem);
-  }
-  
-  onActionMenuClick(dataItem: any) {
-    console.log('Action menu clicked for', dataItem);
-  }
-  
-  toggleDarkMode(event: Event): void {
-    const isDarkMode = (event.target as HTMLInputElement).checked;
-    const body = document.body;
-  
-    if (isDarkMode) {
-      body.classList.add('dark-mode');
-    } else {
-      body.classList.remove('dark-mode');
-    }
-  }
-  
-  
-  
 }

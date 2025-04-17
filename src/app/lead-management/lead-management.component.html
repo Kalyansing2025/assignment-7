@@ -6,9 +6,10 @@
         <span class="sub-title">Leads</span>
     </div>
     <div class="toolbar-actions">
-        <button class="btn green">⬇ Export to excel</button>
-        <button class="btn green">Create</button>
+        <button class="btn green" (click)="exportToExcel()">⬇ Export to Excel</button>
+        <button class="btn green" (click)="addNewRowFromToolbar()">Create</button>
     </div>
+
 </div>
 
 
@@ -53,14 +54,10 @@
 </div>
 
 
-<kendo-grid [kendoGridBinding]="gridData" [pageSize]="10" [pageable]="true" [sortable]="true" [navigable]="true"
+<kendo-grid #grid [kendoGridBinding]="gridData" [pageSize]="10" [pageable]="true" [sortable]="true" [navigable]="true"
     (add)="addHandler($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
     (save)="saveHandler($event)" (remove)="removeHandler($event)" kendoGridReactiveEditingDirective
     [kendoGridReactiveEditing]="createFormGroup">
-
-    <ng-template kendoGridToolbarTemplate>
-        <button kendoGridAddCommand>Add new</button>
-    </ng-template>
 
     <kendo-grid-column field="RecordId" title="Record Id" [width]="200" editor="numeric"></kendo-grid-column>
     <kendo-grid-column field="LastName" title="Last Name" [width]="200" editor="text"></kendo-grid-column>

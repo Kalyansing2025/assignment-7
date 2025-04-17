@@ -136,7 +136,7 @@ input:checked + .slider:before {
   border-radius: 34px;
 }
 
-/* === DARK MODE === */
+
 body.dark-mode {
   background-color: #1c1c1c;
   color: #eaeaea;
@@ -320,4 +320,37 @@ body.dark-mode .nav-top-right {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* Pagination Dark Mode */
+body.dark-mode .k-pager-wrap {
+  background-color: #1e1e1e;
+  color: #050505;
+  border-top: 1px solid #444;
+}
+
+body.dark-mode .k-pager-info,
+body.dark-mode .k-pager-numbers {
+  color: #060606;
+}
+
+body.dark-mode .k-pager-numbers .k-link,
+body.dark-mode .k-button.k-pager-nav {
+  background-color: #2e2e2e;
+  color: #080707;
+  border: 1px solid #555;
+}
+
+body.dark-mode .k-pager-numbers .k-link:hover,
+body.dark-mode .k-button.k-pager-nav:hover {
+  background-color: #4caf50;
+  color: #0f0a0a;
+}
+
+body.dark-mode .k-pager-numbers .k-link.k-state-selected {
+  background-color: #4caf50;
+  color: rgb(12, 10, 10);
+  font-weight: bold;
+  border-color: #4caf50;
+  box-shadow: 0 0 4px rgba(76, 175, 80, 0.6);
 }
