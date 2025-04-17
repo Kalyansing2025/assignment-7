@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+
 import {
   GridComponent,
   GridModule,
@@ -32,12 +33,12 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
     InputsModule,
     ButtonsModule,
     DropDownListModule,
-    ExcelModule,
+    ExcelModule, 
     PDFModule,
     TextBoxModule,
     RatingModule,
     LabelModule,
-    ExcelExportModule
+    ExcelExportModule,
   ],
 })
 export class LeadManagementComponent implements OnInit {
@@ -148,17 +149,13 @@ export class LeadManagementComponent implements OnInit {
 
   exportToExcel(): void {
     if (this.grid) {
-      this.grid.saveAsExcel(); // ✅ No arguments needed
+      this.grid.saveAsExcel(); // Trigger the Excel export
     }
   }
-  onExcelExport(e: any): void {
-  e.workbook.fileName = 'Leads.xlsx';
-  // You can manipulate the workbook here if needed
-}
 
-  
-  
-  
+  onExcelExport(e: any): void {
+    e.workbook.fileName = 'Leads.xlsx'; // Set the file name for the exported Excel file
+  }
 
   removeHandler({ dataItem }: any): void {
     this.http.delete(`http://localhost:3000/leads/${dataItem.RecordId}`).subscribe(() => {

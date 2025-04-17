@@ -1,17 +1,14 @@
 <!-- Top Toolbar -->
-<!-- Top Toolbar -->
 <div class="top-toolbar">
     <div class="toolbar-title">
         <h2>Lead Management</h2>
         <span class="sub-title">Leads</span>
     </div>
     <div class="toolbar-actions">
-        <button class="btn green" (click)="exportToExcel()">⬇ Export to Excel</button>
+        <!-- Removed Export to Excel button -->
         <button class="btn green" (click)="addNewRowFromToolbar()">Create</button>
     </div>
-
 </div>
-
 
 <!-- Filter Row -->
 <div class="filter-toolbar">
@@ -53,28 +50,38 @@
     <button class="btn icon outline">☰</button>
 </div>
 
-
+<!-- Kendo Grid -->
 <kendo-grid #grid [kendoGridBinding]="gridData" [pageSize]="10" [pageable]="true" [sortable]="true" [navigable]="true"
     (add)="addHandler($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
     (save)="saveHandler($event)" (remove)="removeHandler($event)" kendoGridReactiveEditingDirective
-    [kendoGridReactiveEditing]="createFormGroup">
+    [kendoGridReactiveEditing]="createFormGroup" [columnMenu]="true">
 
-    <kendo-grid-column field="RecordId" title="Record Id" [width]="200" editor="numeric"></kendo-grid-column>
-    <kendo-grid-column field="LastName" title="Last Name" [width]="200" editor="text"></kendo-grid-column>
-    <kendo-grid-column field="FirstName" title="First Name" [width]="200" editor="text"></kendo-grid-column>
-    <kendo-grid-column field="PrimaryEmailAddress" title="Primary Email Address" [width]="200"
-        editor="text"></kendo-grid-column>
-    <kendo-grid-column field="PrimaryPhoneType" title="Primary Phone Type" [width]="200"
-        editor="numeric"></kendo-grid-column>
-    <kendo-grid-column field="LMPLeadId" title="LMP Lead Id" [width]="200" editor="numeric"></kendo-grid-column>
-    <kendo-grid-column field="AppoinmentType" title="Appoinment Type" [width]="200" editor="text"></kendo-grid-column>
-    <kendo-grid-column field="AssignedDate" title="Assigned Date" [width]="200" editor="text"></kendo-grid-column>
-    <kendo-grid-column field="SalesRep" title="Sales Rep" [width]="200" editor="text"></kendo-grid-column>
-    <kendo-grid-column field="Coordinator" title="Coordinator" [width]="200" editor="text"></kendo-grid-column>
-    <kendo-grid-column field="SyncToMobile" title="Sync To Mobile" [width]="200" editor="numeric"></kendo-grid-column>
-    <kendo-grid-column field="EffectiveDate" title="Effective Date" [width]="200" editor="text"></kendo-grid-column>
+    <kendo-grid-column field="RecordId" title="Record Id" [width]="200" editor="numeric"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="LastName" title="Last Name" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="FirstName" title="First Name" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="PrimaryEmailAddress" title="Primary Email Address" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="PrimaryPhoneType" title="Primary Phone Type" [width]="200" editor="numeric"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="LMPLeadId" title="LMP Lead Id" [width]="200" editor="numeric"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="AppoinmentType" title="Appoinment Type" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="AssignedDate" title="Assigned Date" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="SalesRep" title="Sales Rep" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="Coordinator" title="Coordinator" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="SyncToMobile" title="Sync To Mobile" [width]="200" editor="numeric"
+        [columnMenu]="true"></kendo-grid-column>
+    <kendo-grid-column field="EffectiveDate" title="Effective Date" [width]="200" editor="text"
+        [columnMenu]="true"></kendo-grid-column>
 
-    <kendo-grid-command-column field="Actions" title=" Actions" [width]="160" [locked]="true">
+    <kendo-grid-command-column field="Actions" title="Actions" [width]="160" [locked]="true" [columnMenu]="true">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
             <button kendoGridEditCommand [primary]="true">Edit</button>
             <button kendoGridRemoveCommand>Remove</button>
