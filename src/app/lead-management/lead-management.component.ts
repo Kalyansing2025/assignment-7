@@ -17,7 +17,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { ToolBarModule } from '@progress/kendo-angular-toolbar';
 import { SparklineModule, ChartsModule } from '@progress/kendo-angular-charts';
 import { KENDO_LABEL, LabelModule } from '@progress/kendo-angular-label';
-import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+import { ExcelExportComponent, ExcelExportModule } from '@progress/kendo-angular-excel-export';
 
 @Component({
   standalone: true,
@@ -43,7 +43,7 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 })
 export class LeadManagementComponent implements OnInit {
   @ViewChild('grid') grid!: GridComponent;
-
+  @ViewChild('excelexport', { static: true }) excelexport!: ExcelExportComponent;
   gridData: any[] = [];
   originalGridData: any[] = [];
 
@@ -77,7 +77,11 @@ export class LeadManagementComponent implements OnInit {
       this.originalGridData = [...this.gridData];
     });
   }
-
+  exportToExcel(): void {
+    if (this.excelexport) {
+      this.excelexport.save(); // Trigger the Excel export
+    }
+  }
   createFormGroup = (args: { dataItem: any; isNew: boolean }): FormGroup => {
     const item = args.isNew
       ? {
@@ -147,11 +151,11 @@ export class LeadManagementComponent implements OnInit {
     }
   }
 
-  exportToExcel(): void {
-    if (this.grid) {
-      this.grid.saveAsExcel(); // Trigger the Excel export
-    }
-  }
+  // exportToExcel(): void {
+  //   if (this.grid) {
+  //     this.grid.saveAsExcel(); // Trigger the Excel export
+  //   }
+  // }
 
   onExcelExport(e: any): void {
     e.workbook.fileName = 'Leads.xlsx'; // Set the file name for the exported Excel file

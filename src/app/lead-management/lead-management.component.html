@@ -6,6 +6,30 @@
     </div>
     <div class="toolbar-actions">
         <!-- Removed Export to Excel button -->
+        <button class="toolbar-actions" kendoButton type="button" (click)="exportToExcel()">
+            Export To Excel
+        </button>
+    </div>
+    <kendo-excelexport [data]="gridData" fileName="Products.xlsx" #excelexport>
+        <kendo-excelexport-column field="RecordId" title="Record Id" [width]="350"></kendo-excelexport-column>
+        <kendo-excelexport-column field="LastName" title="Last Name" [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="FirstName" title="First Name" [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="PrimaryEmailAddress" title="Primary Email Address"
+            [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="PrimaryPhoneType" title="Primary Phone Type"
+            [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="LMPLeadId" title="LMP Lead Id" [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="AppoinmentType" title="Appoinment Type"
+            [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="AssignedDate" title="Assigned Date" [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="SalesRep" title="Sales Rep" [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="Coordinator" title="Coordinator" [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="SyncToMobile" title="Sync To Mobile" [width]="200"></kendo-excelexport-column>
+        <kendo-excelexport-column field="EffectiveDate" title="Effective Date" [width]="200"></kendo-excelexport-column>
+
+    </kendo-excelexport>
+    <div class="toolbar-actions">
+        <!-- Removed Export to Excel button -->
         <button class="btn green" (click)="addNewRowFromToolbar()">Create</button>
     </div>
 </div>
