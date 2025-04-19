@@ -1,8 +1,9 @@
 <!-- Top Toolbar -->
 <div class="top-toolbar">
     <div class="toolbar-title">
-        <h2>Lead Management</h2>
-        <span class="sub-title">Leads</span>
+        <h2>Lead Management
+            <span class="sub-title">Leads</span>
+        </h2>
     </div>
 
     <kendo-excelexport [data]="gridData" fileName="Products.xlsx" #excelexport>
@@ -79,7 +80,7 @@
     [kendoGridReactiveEditing]="createFormGroup" [columnMenu]="true">
 
     <!-- Action-2 Column -->
-    <kendo-grid-column title="Action-2" [width]="150">
+    <kendo-grid-column title="Actions-2" [width]="150">
         <ng-template kendoGridCellTemplate let-dataItem>
             <div class="custom-select-wrapper">
                 <select class="action-dropdown" (change)="onActionChange($event, dataItem)">

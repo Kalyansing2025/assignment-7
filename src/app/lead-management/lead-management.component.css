@@ -1,9 +1,6 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 
-/* ::ng-deep .k-toolbar {
-  display: flex !important;
-} */
 ::ng-deep .action-dropdown .k-button {
   background-color: #78be20 !important;
   color: white !important;
@@ -35,6 +32,12 @@
 
 .action-dropdown:hover {
   background-color: #5a9e16;
+}
+
+.action-dropdown option {
+  background-color: #f5f5f5; /* Light gray background for options */
+  color: #333; /* Dark text for options */
+  font-weight: normal;
 }
 
 .custom-icon {
@@ -76,8 +79,19 @@
   }
   .k-grid {
     width: 100% !important;
+    height: calc(100vh - 150px); /* Adjust height dynamically based on the viewport */
+    display: flex;
+    flex-direction: column;
   }
   
+  .k-grid .k-grid-content {
+    overflow-y: auto; /* Enable vertical scrolling for the grid body */
+    flex: 1; /* Allow the grid body to take up remaining space */
+  }
+  
+  .k-grid .k-grid-header {
+    flex-shrink: 0; /* Prevent the header from shrinking */
+  }
   
   .btn-action-dropdown {
     background-color: #87b82f;
@@ -412,10 +426,6 @@ my-app > .k-icon.k-i-loading {
 }
 
 
-/* ::ng-deep .lead-grid  {
-  background-color: #ea0808;
-  color: #177de3;
-} */
 
 ::ng-deep .k-grid .k-grid-header {
   background-color: #1c2b5e !important;
@@ -428,6 +438,50 @@ my-app > .k-icon.k-i-loading {
 
 ::ng-deep.k-svg-icon{
   color: #ffffff;
+}
+
+/* Change the background and text color of Kendo pagination */
+::ng-deep .k-pager-wrap {
+    background-color: black !important; /* Black background for pagination */
+    color: white !important; /* White text for contrast */
+}
+
+/* Style the pagination buttons */
+::ng-deep .k-pager-nav .k-link,
+::ng-deep .k-pager-numbers .k-link {
+    background-color: black !important; /* Black background for buttons */
+    color: white !important; /* White text for buttons */
+    border: 1px solid white !important; /* White border for buttons */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Adjust padding for better spacing */
+}
+
+/* Hover effect for pagination buttons */
+::ng-deep .k-pager-nav .k-link:hover,
+::ng-deep .k-pager-numbers .k-link:hover {
+    background-color: #333 !important; /* Darker black on hover */
+    color: #fff !important; /* Keep text white */
+}
+
+/* Style for the active page number */
+::ng-deep .k-pager-numbers .k-selected {
+    background-color: #555 !important; /* Dark gray for the active page */
+    color: white !important; /* White text for the active page */
+    font-weight: bold; /* Bold text for emphasis */
+}
+
+::ng-deep.k-button-md.k-icon-button{
+    background-color: #3a3e3a !important; /* Green background */
+    color: white !important; /* White text */
+    border-radius: 4px; /* Optional: Rounded corners */
+    padding: 5px 10px; /* Optional: Adjust padding */
+    border: none; /* Optional: Remove border */
+}
+
+/* Optional: Add hover effect */
+::ng-deep .k-button-md.k-icon-button:hover {
+    background-color: #388e3c !important; /* Darker green on hover */
+    color: white !important;
 }
 
 .toolbar {
@@ -585,6 +639,7 @@ input[type='checkbox']:checked + .slider::before {
   padding: 0.75rem 1rem;
   border-bottom: 2px solid #c5e1a5;
   background: #f5f5f5;
+  margin-bottom: 10px;
 }
 
 .toolbar-title h2 {
@@ -646,6 +701,7 @@ input[type='checkbox']:checked + .slider::before {
   border-radius: 6px;
   margin: 1rem 0;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .dropdown,
@@ -683,7 +739,7 @@ input[type='checkbox']:checked + .slider::before {
   border-radius: 25px;
   background-color: #263238;
   padding: 2px;
-  margin-left: 67px;
+  margin-left: 202px;
 }
 
 .pill {

@@ -1,51 +1,6 @@
 {
   "leads": [
     {
-      "id": "39",
-      "Recordid": 139,
-      "LastName": "Chavez",
-      "FirstName": "Courtney",
-      "PrimaryEmailAddress": "marc33@curtis-williams.org",
-      "PrimaryPhoneType": "Home",
-      "LMPLeadId": "LMP63271",
-      "AppoinmentType": "Demo",
-      "AssignedDate": "2025-04-10",
-      "SalesRep": "John Carter",
-      "Coordinator": "Bob Johnson",
-      "SyncToMobile": false,
-      "EffectiveDate": "2025-05-27"
-    },
-    {
-      "id": "40",
-      "Recordid": 140,
-      "LastName": "Brooks",
-      "FirstName": "Nicole",
-      "PrimaryEmailAddress": "jillsmith@king-bates.com",
-      "PrimaryPhoneType": "Mobile",
-      "LMPLeadId": "LMP91738",
-      "AppoinmentType": "Consultation",
-      "AssignedDate": "2025-04-03",
-      "SalesRep": "Mike Brown",
-      "Coordinator": "George White",
-      "SyncToMobile": false,
-      "EffectiveDate": "2025-05-17"
-    },
-    {
-      "id": "41",
-      "Recordid": 141,
-      "LastName": "Wilson",
-      "FirstName": "Christina",
-      "PrimaryEmailAddress": "schmidtgregory@brown.org",
-      "PrimaryPhoneType": "Mobile",
-      "LMPLeadId": "LMP22554",
-      "AppoinmentType": "Check-in",
-      "AssignedDate": "2025-03-12",
-      "SalesRep": "Emma Jones",
-      "Coordinator": "George White",
-      "SyncToMobile": true,
-      "EffectiveDate": "2025-04-27"
-    },
-    {
       "id": "42",
       "Recordid": 142,
       "LastName": "Richardson",
@@ -106,24 +61,9 @@
       "EffectiveDate": "2025-05-27"
     },
     {
-      "id": "48",
-      "Recordid": 148,
-      "LastName": "Brooks",
-      "FirstName": "Eric",
-      "PrimaryEmailAddress": "krystalgonzalez@hill.info",
-      "PrimaryPhoneType": "Mobile",
-      "LMPLeadId": "LMP85100",
-      "AppoinmentType": "Check-in",
-      "AssignedDate": "2025-04-10",
-      "SalesRep": "Alice Smith",
-      "Coordinator": "Sally Ray",
-      "SyncToMobile": true,
-      "EffectiveDate": "2025-05-20"
-    },
-    {
       "RecordId": "49",
-      "LastName": "Patellllllllll",
-      "FirstName": "James",
+      "LastName": "Patel",
+      "FirstName": "Jamesssssssss",
       "PrimaryEmailAddress": "haustin@yahoo.com",
       "PrimaryPhoneType": "Home",
       "LMPLeadId": "LMP41858",
