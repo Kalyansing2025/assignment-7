@@ -220,6 +220,19 @@ export class LeadManagementComponent implements OnInit {
     }
   }
 
+  onActionChange(event: any, dataItem: any): void {
+    const selectedAction = event.target.value;
+
+    if (selectedAction === 'edit') {
+        this.editHandler({ sender: this.grid, rowIndex: this.gridData.indexOf(dataItem), dataItem });
+    } else if (selectedAction === 'remove') {
+        this.removeHandler({ dataItem });
+    }
+
+    // Reset the dropdown to "Action" after performing the action
+    event.target.value = '';
+  }
+
   private closeEditor(grid: any, rowIndex: number = this.editedRowIndex!): void {
     grid.closeRow(rowIndex);
     this.editedRowIndex = null;

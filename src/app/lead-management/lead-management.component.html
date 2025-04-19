@@ -4,12 +4,7 @@
         <h2>Lead Management</h2>
         <span class="sub-title">Leads</span>
     </div>
-    <div class="toolbar-actions">
-        <!-- Removed Export to Excel button -->
-        <button class="toolbar-actions" kendoButton type="button" (click)="exportToExcel()">
-            Export To Excel
-        </button>
-    </div>
+
     <kendo-excelexport [data]="gridData" fileName="Products.xlsx" #excelexport>
         <kendo-excelexport-column field="RecordId" title="Record Id" [width]="350"></kendo-excelexport-column>
         <kendo-excelexport-column field="LastName" title="Last Name" [width]="200"></kendo-excelexport-column>
@@ -29,6 +24,9 @@
 
     </kendo-excelexport>
     <div class="toolbar-actions">
+        <button class="btn green" kendoButton type="button" (click)="exportToExcel()">
+            Export To Excel
+        </button>
         <!-- Removed Export to Excel button -->
         <button class="btn green" (click)="addNewRowFromToolbar()">Create</button>
     </div>
@@ -80,6 +78,27 @@
     (save)="saveHandler($event)" (remove)="removeHandler($event)" kendoGridReactiveEditingDirective
     [kendoGridReactiveEditing]="createFormGroup" [columnMenu]="true">
 
+    <!-- Action-2 Column -->
+    <kendo-grid-column title="Action-2" [width]="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="custom-select-wrapper">
+                <select class="action-dropdown" (change)="onActionChange($event, dataItem)">
+                    <option value="" disabled selected>Actions</option>
+                    <option value="edit">Edit</option>
+                    <option value="remove">Remove</option>
+                </select>
+                <span class="custom-icon">
+                    ⚙️
+                </span>
+                <span class="custom-icon-2">
+                    ▼
+                </span>
+            </div>
+        </ng-template>
+    </kendo-grid-column>
+
+
+
     <kendo-grid-column field="RecordId" title="Record Id" [width]="200" editor="numeric"
         [columnMenu]="true"></kendo-grid-column>
     <kendo-grid-column field="LastName" title="Last Name" [width]="200" editor="text"
@@ -105,12 +124,16 @@
     <kendo-grid-column field="EffectiveDate" title="Effective Date" [width]="200" editor="text"
         [columnMenu]="true"></kendo-grid-column>
 
-    <kendo-grid-command-column field="Actions" title="Actions" [width]="160" [locked]="true" [columnMenu]="true">
+    <kendo-grid-command-column field="Actions" title="Actions" [width]="120" [locked]="true" [columnMenu]="true">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
-            <button kendoGridEditCommand [primary]="true">Edit</button>
-            <button kendoGridRemoveCommand>Remove</button>
-            <button kendoGridSaveCommand>{{ isNew ? "Add" : "Update" }}</button>
-            <button kendoGridCancelCommand>{{ isNew ? "Discard" : "Cancel" }}</button>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <button kendoGridEditCommand [primary]="true" class="action-button" style="width: 80px;">Edit</button>
+                <button kendoGridRemoveCommand class="action-button" style="width: 80px;">Remove</button>
+                <button kendoGridSaveCommand class="action-button" style="width: 80px;">{{ isNew ? "Add" : "Update"
+                    }}</button>
+                <button kendoGridCancelCommand class="action-button" style="width: 80px;">{{ isNew ? "Discard" :
+                    "Cancel" }}</button>
+            </div>
         </ng-template>
     </kendo-grid-command-column>
 </kendo-grid>

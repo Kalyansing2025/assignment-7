@@ -1,10 +1,71 @@
-
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 /* ::ng-deep .k-toolbar {
   display: flex !important;
 } */
+::ng-deep .action-dropdown .k-button {
+  background-color: #78be20 !important;
+  color: white !important;
+  border-radius: 5px;
+  font-weight: 500;
+  padding: 5px 10px;
+}
+
+/* Optional: Add hover effect for the dropdown button */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.action-dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #78be20;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 8px 40px 8px 35px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.action-dropdown:hover {
+  background-color: #5a9e16;
+}
+
+.custom-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 16px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.custom-icon-2{
+  position: absolute;
+  top: 50%;
+  left: 90px;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 16px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.action-dropdown::-ms-expand {
+  display: none;
+}
 
 
 :host {
@@ -365,6 +426,10 @@ my-app > .k-icon.k-i-loading {
   background-color: rgb(5, 43, 118);
 }
 
+::ng-deep.k-svg-icon{
+  color: #ffffff;
+}
+
 .toolbar {
   margin-bottom: 20px;
 }
@@ -477,7 +542,7 @@ select:focus {
 
 
 
-.slider {
+slider {
   width: 40px;
   height: 20px;
   background-color: #d1d5db;
@@ -487,7 +552,7 @@ select:focus {
   transition: background-color 0.3s;
 }
 
-.slider::before {
+slider::before {
   content: '';
   position: absolute;
   height: 16px;
@@ -539,7 +604,6 @@ input[type='checkbox']:checked + .slider::before {
   align-items: center;
   gap: 0.5rem;
   color: black;
-  background-color: rgb(139, 229, 49)
 }
 /* This is Top Toolbar For Responsove */
 @media (max-width: 600px) {
@@ -619,6 +683,7 @@ input[type='checkbox']:checked + .slider::before {
   border-radius: 25px;
   background-color: #263238;
   padding: 2px;
+  margin-left: 67px;
 }
 
 .pill {
@@ -633,4 +698,8 @@ input[type='checkbox']:checked + .slider::before {
 .pill.active {
   background: #8bc34a;
   color: black;
+}
+
+.action-button {
+  width: 100px;
 }
