@@ -4,7 +4,7 @@
 
 
 
-/* === Global App Styles === */
+/* Body */
 body {
   font-family: 'RobotoRegular', Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -25,7 +25,7 @@ my-app > .k-icon.k-i-loading {
   transform: translate(-50%, -50%);
 }
 
-/* === Kendo Grid Example Wrapper === */
+/* Kendo Grid Example Wrapper  */
 .example-wrapper {
   min-height: 280px;
   align-content: flex-start;
@@ -78,7 +78,6 @@ my-app > .k-icon.k-i-loading {
 
 
 /* Dark Mode Start From Here */
-/* === Dark Mode Toggle Switch === */
 .dark-mode-toggle {
   display: flex;
   align-items: center;
@@ -142,7 +141,7 @@ body.dark-mode {
   color: #eaeaea;
 }
 
-/* === Top Toolbar === */
+/* Top Toolbar */
 body.dark-mode .top-toolbar {
   background-color: #2b2b2b;
   border-bottom: 1px solid #444;
@@ -153,7 +152,7 @@ body.dark-mode .top-toolbar .sub-title {
   color: #eaeaea;
 }
 
-/* === Buttons === */
+/* Buttons */
 body.dark-mode .btn {
   background-color: #3a3a3a;
   color: #fff;
@@ -182,7 +181,7 @@ body.dark-mode .btn.icon:hover {
   background-color: #444;
 }
 
-/* === Filter Toolbar === */
+/*  Filter Toolbar  */
 body.dark-mode .filter-toolbar {
   background-color: #242424;
   border: 1px solid #444;
@@ -205,7 +204,7 @@ body.dark-mode .search-input::placeholder {
   color: #aaa;
 }
 
-/* === Toggle Pill Buttons === */
+/*  Toggle Pill Buttons */
 body.dark-mode .toggle-pill-group .pill {
   background-color: #3a3a3a;
   color: #ccc;
@@ -217,7 +216,7 @@ body.dark-mode .toggle-pill-group .pill.active {
   color: white;
 }
 
-/* === Kendo Grid Core === */
+/* Kendo Grid Core */
 body.dark-mode .k-grid {
   background-color: #2c2c2c;
   color: #eaeaea;
@@ -248,7 +247,7 @@ body.dark-mode .k-grid td {
   border-color: #444;
 }
 
-/* === Inputs inside Grid === */
+/* Inputs inside Grid */
 body.dark-mode .k-textbox,
 body.dark-mode .k-dropdownlist {
   background-color: #333;
@@ -256,7 +255,7 @@ body.dark-mode .k-dropdownlist {
   border-color: #555;
 }
 
-/* === Other Global Buttons === */
+/* Othe Buttons */
 body.dark-mode .k-button,
 body.dark-mode button,
 body.dark-mode .btn-action,
@@ -270,7 +269,7 @@ body.dark-mode .btn-search {
   background-color: #555;
 }
 
-/* === Nav Buttons === */
+/*Nav Buttons */
 body.dark-mode .icon-btn {
   background-color: #2c2c2c !important;
   color: #eaeaea !important;
@@ -281,17 +280,17 @@ body.dark-mode .icon-btn:hover {
   background-color: #3a3a3a !important;
 }
 
-/* === User Info === */
+/* User Info */
 body.dark-mode .user-info {
   color: #f1f1f1;
 }
 
-/* === Notification Badge === */
+/* Notification Badge*/
 body.dark-mode .notification-badge {
   background-color: #ff5252;
   color: white;
 }
-/* === Navbar Container & Navbar Background for Dark Mode === */
+/* Navbar Container & Navbar Background for Dark Mode */
 body.dark-mode .navbar-container {
   background-color: #1e1e1e;
   border-bottom: 1px solid #444;
@@ -312,7 +311,7 @@ body.dark-mode .navbar .nav-left button.active {
   border-radius: 6px;
   color: #4caf50;
 }
-/* === Top Right Navbar Section (Dark Mode) === */
+/* Top Right Navbar Section*/
 body.dark-mode .nav-top-right {
   background-color: #1e1e1e;
   padding: 8px 16px;
