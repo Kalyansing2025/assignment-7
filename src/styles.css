@@ -345,11 +345,12 @@ body.dark-mode .k-button.k-pager-nav:hover {
   background-color: #4caf50;
   color: #0f0a0a;
 }
-
+                                                                                                             
 body.dark-mode .k-pager-numbers .k-link.k-state-selected {
   background-color: #4caf50;
   color: rgb(12, 10, 10);
   font-weight: bold;
   border-color: #4caf50;
   box-shadow: 0 0 4px rgba(76, 175, 80, 0.6);
-}
+}                                                
+                                                                                                    

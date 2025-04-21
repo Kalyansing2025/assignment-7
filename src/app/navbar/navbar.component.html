@@ -56,9 +56,12 @@
             <button kendoButton [class.active]="isActive('/workflows')" (click)="navigateTo('/workflows')">
                 <i class="bi bi-arrow-repeat"></i> WORKFLOWS
             </button>
-            <button kendoButton [class.active]="isActive('/chat')" (click)="navigateTo('/chat')" class="chat-btn">
+            <button kendoButton [class.active]="isActive('/chat ')" (click)="navigateTo('/chat')" class="chat-btn">
                 <i class="bi bi-chat-dots-fill"></i> CHAT
                 <span class="notification-badge">1</span>
+            </button>
+            <button kendoButton [class.active]="isActive('/demo')" (click)="navigateTo('/demo')" class="">
+                <i class=""></i> DEMO
             </button>
         </div>
     </nav>
