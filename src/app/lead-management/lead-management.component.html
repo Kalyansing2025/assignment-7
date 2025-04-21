@@ -28,7 +28,6 @@
         <button class="btn green" kendoButton type="button" (click)="exportToExcel()">
             Export To Excel
         </button>
-        <!-- Removed Export to Excel button -->
         <button class="btn green" (click)="addNewRowFromToolbar()">Create</button>
     </div>
 </div>
@@ -98,8 +97,6 @@
         </ng-template>
     </kendo-grid-column>
 
-
-
     <kendo-grid-column field="RecordId" title="Record Id" [width]="200" editor="numeric"
         [columnMenu]="true"></kendo-grid-column>
     <kendo-grid-column field="LastName" title="Last Name" [width]="200" editor="text"
@@ -122,9 +119,9 @@
         [columnMenu]="true"></kendo-grid-column>
     <kendo-grid-column field="SyncToMobile" title="Sync To Mobile" [width]="200" editor="numeric"
         [columnMenu]="true"></kendo-grid-column>
-    <kendo-grid-column field="EffectiveDate" title="Effective Date" [width]="200" editor="text"
-        [columnMenu]="true"></kendo-grid-column>
-
+    <kendo-grid-column field="EffectiveDate" title="Effective Date" [width]="200" editor="text" [columnMenu]="true">
+    </kendo-grid-column>
+    <!-- Kendo Edit and Remove  -->
     <kendo-grid-command-column field="Actions" title="Actions" [width]="120" [locked]="true" [columnMenu]="true">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
             <div style="display: flex; flex-direction: column; gap: 5px;">

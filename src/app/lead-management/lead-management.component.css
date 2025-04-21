@@ -9,7 +9,6 @@
   padding: 5px 10px;
 }
 
-/* Optional: Add hover effect for the dropdown button */
 .custom-select-wrapper {
   position: relative;
   width: 100%;
@@ -35,8 +34,8 @@
 }
 
 .action-dropdown option {
-  background-color: #f5f5f5; /* Light gray background for options */
-  color: #333; /* Dark text for options */
+  background-color: #f5f5f5;
+  color: #333; 
   font-weight: normal;
 }
 
@@ -79,18 +78,18 @@
   }
   .k-grid {
     width: 100% !important;
-    height: calc(100vh - 150px); /* Adjust height dynamically based on the viewport */
+    height: calc(100vh - 150px); 
     display: flex;
     flex-direction: column;
   }
   
   .k-grid .k-grid-content {
-    overflow-y: auto; /* Enable vertical scrolling for the grid body */
-    flex: 1; /* Allow the grid body to take up remaining space */
+    overflow-y: auto; 
+    flex: 1; 
   }
   
   .k-grid .k-grid-header {
-    flex-shrink: 0; /* Prevent the header from shrinking */
+    flex-shrink: 0;
   }
   
   .btn-action-dropdown {
@@ -104,20 +103,20 @@
  
   
 
-/* === Dropdown Fix for Kendo UI === */
+/*  Dropdown Fix for Kendo UI */
 ::ng-deep .k-grid-toolbar {
   width: 100%;
   padding: 0 !important;
 }
 
-/* === Layout Content Wrapper === */
+/*  Layout Content Wrapper  */
 .content {
   margin-top: 116px;
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* === Header Section === */
+/* Header Section */
 .lead-header {
   display: flex;
   flex-wrap: wrap;
@@ -260,10 +259,6 @@
   padding: 0 15px;
 }
 
-/* .btn-action-1 {
-  padding: 0 12px;
-  margin-right: 6px;
-} */
 
 .buttons-wrapper {
   display: flex;
@@ -273,7 +268,7 @@
   flex-wrap: wrap;
 }
 
-/* === General App Styling === */
+/*  General App Styling  */
 body {
   font-family: 'RobotoRegular', Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -347,13 +342,13 @@ my-app > .k-icon.k-i-loading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Just in case screen is small */
+  flex-wrap: wrap;
   gap: 10px;
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
 }
 
-/* Left section: dropdowns + search */
+
 .lead-filters-left {
   display: flex;
   align-items: center;
@@ -361,7 +356,7 @@ my-app > .k-icon.k-i-loading {
   flex-wrap: wrap;
 }
 
-/* Right section: pills + buttons */
+
 .lead-filters-right {
   display: flex;
   align-items: center;
@@ -440,47 +435,46 @@ my-app > .k-icon.k-i-loading {
   color: #ffffff;
 }
 
-/* Change the background and text color of Kendo pagination */
+
 ::ng-deep .k-pager-wrap {
-    background-color: black !important; /* Black background for pagination */
-    color: white !important; /* White text for contrast */
+    background-color: black !important;
+    color: white !important;
 }
 
-/* Style the pagination buttons */
 ::ng-deep .k-pager-nav .k-link,
 ::ng-deep .k-pager-numbers .k-link {
-    background-color: black !important; /* Black background for buttons */
-    color: white !important; /* White text for buttons */
-    border: 1px solid white !important; /* White border for buttons */
-    border-radius: 4px; /* Rounded corners */
-    padding: 5px 10px; /* Adjust padding for better spacing */
+    background-color: black !important; 
+    color: white !important; 
+    border: 1px solid white !important; 
+    border-radius: 4px; 
+    padding: 5px 10px; 
 }
 
-/* Hover effect for pagination buttons */
+
 ::ng-deep .k-pager-nav .k-link:hover,
 ::ng-deep .k-pager-numbers .k-link:hover {
-    background-color: #333 !important; /* Darker black on hover */
-    color: #fff !important; /* Keep text white */
+    background-color: #333 !important; 
+    color: #fff !important;
 }
 
-/* Style for the active page number */
+
 ::ng-deep .k-pager-numbers .k-selected {
-    background-color: #555 !important; /* Dark gray for the active page */
-    color: white !important; /* White text for the active page */
-    font-weight: bold; /* Bold text for emphasis */
+    background-color: #555 !important; 
+    color: white !important; 
+    font-weight: bold;
 }
 
 ::ng-deep.k-button-md.k-icon-button{
-    background-color: #3a3e3a !important; /* Green background */
-    color: white !important; /* White text */
-    border-radius: 4px; /* Optional: Rounded corners */
-    padding: 5px 10px; /* Optional: Adjust padding */
-    border: none; /* Optional: Remove border */
+    background-color: #3a3e3a !important; 
+    color: white !important; 
+    border-radius: 4px; 
+    padding: 5px 10px;
+    border: none;
 }
 
-/* Optional: Add hover effect */
+
 ::ng-deep .k-button-md.k-icon-button:hover {
-    background-color: #388e3c !important; /* Darker green on hover */
+    background-color: #388e3c !important; 
     color: white !important;
 }
 
@@ -490,7 +484,7 @@ my-app > .k-icon.k-i-loading {
 
 .filters {
   margin-bottom: 20px;
-  display: flex;
+  display: flex;  
   align-items: center;
   gap: 10px;
 }
@@ -660,7 +654,7 @@ input[type='checkbox']:checked + .slider::before {
   gap: 0.5rem;
   color: black;
 }
-/* This is Top Toolbar For Responsove */
+
 @media (max-width: 600px) {
   .top-toolbar {
     flex-direction: column;
@@ -692,16 +686,72 @@ input[type='checkbox']:checked + .slider::before {
 }
 
 .filter-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #f9fbe7;
-  padding: 0.5rem 1rem;
-  border: 2px solid #aed581;
-  border-radius: 6px;
-  margin: 1rem 0;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f9fbe7;
+    padding: 0.5rem 1rem;
+    border: 2px solid #aed581;
+    border-radius: 6px;
+    margin: 1rem 0;
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    scrollbar-width: thin; 
+    -ms-overflow-style: none; 
+}
+
+
+.filter-toolbar::-webkit-scrollbar {
+    display: none;
+}
+
+
+.filter-toolbar .dropdown,
+.filter-toolbar .search-input {
+    min-width: 180px;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+
+.filter-toolbar .btn {
+    padding: 0.4rem 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0; 
+}
+
+.filter-toolbar .btn.green {
+    background: #8bc34a;
+    color: white;
+}
+
+.filter-toolbar .btn.icon {
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+}
+
+.filter-toolbar .btn.icon.outline {
+    background: none;
+    border: 1px solid #ccc;
+}
+
+
+@media (max-width: 600px) {
+    .filter-toolbar {
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+    }
+
+    .filter-toolbar .dropdown,
+    .filter-toolbar .search-input,
+    .filter-toolbar .btn {
+        flex-shrink: 0; 
+    }
 }
 
 .dropdown,
@@ -734,28 +784,68 @@ input[type='checkbox']:checked + .slider::before {
   border: 1px solid #ccc;
 }
 
-.toggle-pill-group {
+.toggle-pill-wrapper {
+  width: 100%;
   display: flex;
-  border-radius: 25px;
-  background-color: #263238;
-  padding: 2px;
-  margin-left: 202px;
+  justify-content: center;
+  padding: 1rem 0;
 }
+
+
+.toggle-pill-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; 
+    padding: 0.5rem; 
+    background-color: #263238;
+    border-radius: 25px;
+    margin-left: 180px;
+}
+
 
 .pill {
-  padding: 0.3rem 1rem;
-  background: #263238;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
+    padding: 0.3rem 1rem; 
+    font-size: 14px; 
+    background: #263238;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
+
 
 .pill.active {
-  background: #8bc34a;
-  color: black;
+    background: #8bc34a;
+    color: black;
 }
 
-.action-button {
-  width: 100px;
+@media (max-width: 1024px) {
+    .toggle-pill-group {
+        flex-direction: row; 
+        flex-wrap: nowrap; 
+        gap: 6px; 
+        padding: 0.4rem; 
+    }
+
+    .pill {
+        padding: 0.2rem 0.8rem;
+        font-size: 13px; 
+    }
+}
+
+
+@media (max-width: 600px) {
+    .toggle-pill-group {
+        flex-direction: row; 
+        flex-wrap: nowrap; 
+        gap: 5px; 
+        padding: 0.3rem; 
+    }
+
+    .pill {
+        padding: 0.2rem 0.8rem;
+        font-size: 12px;
+    }
 }

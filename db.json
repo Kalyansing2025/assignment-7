@@ -1,24 +1,8 @@
 {
   "leads": [
     {
-      "id": "42",
-      "Recordid": 142,
-      "LastName": "Richardson",
-      "FirstName": "Jared",
-      "PrimaryEmailAddress": "joseph42@hotmail.com",
-      "PrimaryPhoneType": "Home",
-      "LMPLeadId": "LMP19805",
-      "AppoinmentType": "Demo",
-      "AssignedDate": "2025-03-16",
-      "SalesRep": "Emma Jones",
-      "Coordinator": "George White",
-      "SyncToMobile": false,
-      "EffectiveDate": "2025-05-27"
-    },
-    {
-      "id": "43",
-      "Recordid": 143,
-      "LastName": "Savage",
+      "RecordId": "43",
+      "LastName": "Savageddddd",
       "FirstName": "Kelly",
       "PrimaryEmailAddress": "laura41@yahoo.com",
       "PrimaryPhoneType": "Work",
@@ -28,7 +12,8 @@
       "SalesRep": "Emma Jones",
       "Coordinator": "Sally Ray",
       "SyncToMobile": true,
-      "EffectiveDate": "2025-04-18"
+      "EffectiveDate": "2025-04-18",
+      "id": "43"
     },
     {
       "id": "44",
@@ -329,21 +314,6 @@
       "SyncToMobile": false,
       "EffectiveDate": "",
       "id": "25b0"
-    },
-    {
-      "id": "5cd2",
-      "RecordId": null,
-      "LastName": "ooooooooooooo",
-      "FirstName": "ooooooo",
-      "PrimaryEmailAddress": "",
-      "PrimaryPhoneType": "",
-      "LMPLeadId": "",
-      "AppoinmentType": "",
-      "AssignedDate": "",
-      "SalesRep": "",
-      "Coordinator": "",
-      "SyncToMobile": false,
-      "EffectiveDate": ""
     }
   ]
 }

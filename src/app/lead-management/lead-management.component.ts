@@ -41,6 +41,7 @@ import { ExcelExportComponent, ExcelExportModule } from '@progress/kendo-angular
     ExcelExportModule,
   ],
 })
+// Class 
 export class LeadManagementComponent implements OnInit {
   @ViewChild('grid') grid!: GridComponent;
   @ViewChild('excelexport', { static: true }) excelexport!: ExcelExportComponent;
@@ -77,11 +78,15 @@ export class LeadManagementComponent implements OnInit {
       this.originalGridData = [...this.gridData];
     });
   }
+
+  // Excel export
   exportToExcel(): void {
     if (this.excelexport) {
-      this.excelexport.save(); // Trigger the Excel export
+      this.excelexport.save(); 
     }
   }
+
+  //Create New Data
   createFormGroup = (args: { dataItem: any; isNew: boolean }): FormGroup => {
     const item = args.isNew
       ? {
@@ -115,24 +120,24 @@ export class LeadManagementComponent implements OnInit {
       EffectiveDate: new FormControl(item.EffectiveDate),
     });
   };
-
+  // For Add Data
   addHandler({ sender }: any): void {
     this.closeEditor(sender);
     this.formGroup = this.createFormGroup({ dataItem: {}, isNew: true });
     sender.addRow(this.formGroup);
   }
-
+// Edit Data
   editHandler({ sender, rowIndex, dataItem }: any): void {
     this.closeEditor(sender);
     this.formGroup = this.createFormGroup({ dataItem, isNew: false });
     this.editedRowIndex = rowIndex;
     sender.editRow(rowIndex, this.formGroup);
   }
-
+// Camcel Create Date
   cancelHandler({ sender, rowIndex }: any): void {
     this.closeEditor(sender, rowIndex);
   }
-
+// For Save 
   saveHandler({ sender, rowIndex, formGroup, isNew }: any): void {
     const item = formGroup.value;
 
@@ -151,22 +156,16 @@ export class LeadManagementComponent implements OnInit {
     }
   }
 
-  // exportToExcel(): void {
-  //   if (this.grid) {
-  //     this.grid.saveAsExcel(); // Trigger the Excel export
-  //   }
-  // }
-
   onExcelExport(e: any): void {
-    e.workbook.fileName = 'Leads.xlsx'; // Set the file name for the exported Excel file
+    e.workbook.fileName = 'Leads.xlsx'; 
   }
-
+// For Remove Data
   removeHandler({ dataItem }: any): void {
     this.http.delete(`http://localhost:3000/leads/${dataItem.RecordId}`).subscribe(() => {
       this.gridData = this.gridData.filter(p => p.RecordId !== dataItem.RecordId);
     });
   }
-
+// For Filter Data
   clearFilters(): void {
     this.selectedLead = null;
     this.selectedPreference = null;
@@ -229,7 +228,6 @@ export class LeadManagementComponent implements OnInit {
         this.removeHandler({ dataItem });
     }
 
-    // Reset the dropdown to "Action" after performing the action
     event.target.value = '';
   }
 
