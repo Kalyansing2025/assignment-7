@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
 
-
-
-<div class="content">
-    <router-outlet></router-outlet>
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
 </div>
