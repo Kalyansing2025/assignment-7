@@ -79,7 +79,7 @@
     [kendoGridReactiveEditing]="createFormGroup" [columnMenu]="true">
 
     <!-- Action-2 Column -->
-    <kendo-grid-column title="Actions-2" [width]="150">
+    <kendo-grid-column title="Actions" [width]="150">
         <ng-template kendoGridCellTemplate let-dataItem>
             <div class="custom-select-wrapper">
                 <select class="action-dropdown" (change)="onActionChange($event, dataItem)">
@@ -121,17 +121,7 @@
         [columnMenu]="true"></kendo-grid-column>
     <kendo-grid-column field="EffectiveDate" title="Effective Date" [width]="200" editor="text" [columnMenu]="true">
     </kendo-grid-column>
-    <!-- Kendo Edit and Remove  -->
-    <kendo-grid-command-column field="Actions" title="Actions" [width]="120" [locked]="true" [columnMenu]="true">
-        <ng-template kendoGridCellTemplate let-isNew="isNew">
-            <div style="display: flex; flex-direction: column; gap: 5px;">
-                <button kendoGridEditCommand [primary]="true" class="action-button" style="width: 80px;">Edit</button>
-                <button kendoGridRemoveCommand class="action-button" style="width: 80px;">Remove</button>
-                <button kendoGridSaveCommand class="action-button" style="width: 80px;">{{ isNew ? "Add" : "Update"
-                    }}</button>
-                <button kendoGridCancelCommand class="action-button" style="width: 80px;">{{ isNew ? "Discard" :
-                    "Cancel" }}</button>
-            </div>
-        </ng-template>
-    </kendo-grid-command-column>
+
+
+
 </kendo-grid>

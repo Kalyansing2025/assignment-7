@@ -223,12 +223,52 @@ export class LeadManagementComponent implements OnInit {
     const selectedAction = event.target.value;
 
     if (selectedAction === 'edit') {
-        this.editHandler({ sender: this.grid, rowIndex: this.gridData.indexOf(dataItem), dataItem });
+      this.editRow(dataItem);
     } else if (selectedAction === 'remove') {
-        this.removeHandler({ dataItem });
+      this.removeRow(dataItem);
     }
 
+    // Reset the dropdown to "Actions" after performing the action
     event.target.value = '';
+  }
+
+  editRow(dataItem: any): void {
+    // Enable inline editing for the selected row
+    const rowIndex = this.gridData.findIndex(item => item.RecordId === dataItem.RecordId);
+    if (rowIndex !== -1) {
+      this.formGroup = this.createFormGroup({ dataItem, isNew: false });
+      this.editedRowIndex = rowIndex;
+      this.grid.editRow(rowIndex, this.formGroup);
+
+      // Automatically save changes when clicking outside the row
+      this.grid.cellClick.subscribe(() => {
+        this.saveRow(rowIndex);
+      });
+    }
+  }
+
+  saveRow(rowIndex: number): void {
+    if (this.formGroup.valid) {
+      const updatedItem = this.formGroup.value;
+
+      // Save changes to the backend
+      this.http.put(`http://localhost:3000/leads/${updatedItem.RecordId}`, updatedItem).subscribe(() => {
+        this.gridData[rowIndex] = updatedItem;
+        this.gridData = [...this.gridData]; // Refresh the grid
+        this.closeEditor(this.grid, rowIndex);
+        console.log('Row updated successfully:', updatedItem);
+      });
+    } else {
+      console.warn('Form is invalid. Please check the input values.');
+    }
+  }
+
+  removeRow(dataItem: any): void {
+    // Remove the row from the backend and update the grid
+    this.http.delete(`http://localhost:3000/leads/${dataItem.RecordId}`).subscribe(() => {
+      this.gridData = this.gridData.filter(item => item.RecordId !== dataItem.RecordId);
+      console.log('Row removed successfully:', dataItem);
+    });
   }
 
   private closeEditor(grid: any, rowIndex: number = this.editedRowIndex!): void {
